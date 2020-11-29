@@ -13,6 +13,14 @@
 		BC526BF52572570F0016E7F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC526BF32572570F0016E7F2 /* Main.storyboard */; };
 		BC526BF7257257110016E7F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC526BF6257257110016E7F2 /* Assets.xcassets */; };
 		BC526BFA257257110016E7F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC526BF8257257110016E7F2 /* LaunchScreen.storyboard */; };
+		BC77D1902572580E00025253 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D18F2572580E00025253 /* TestCollectionViewCell.swift */; };
+		BC77D1932572596400025253 /* MonitorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D1922572596400025253 /* MonitorProtocol.swift */; };
+		BC77D19625727D1D00025253 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D19525727D1D00025253 /* Monitor.swift */; };
+		BC77D19925727E9A00025253 /* Monitor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D19825727E9A00025253 /* Monitor+Extension.swift */; };
+		BC77D19C2572859800025253 /* CollectionViewMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D19B2572859800025253 /* CollectionViewMonitor.swift */; };
+		BC77D19F2572862F00025253 /* Monitor+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D19E2572862F00025253 /* Monitor+Util.swift */; };
+		BC77D1A22573581D00025253 /* DelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D1A12573581D00025253 /* DelegateProxy.swift */; };
+		BC77D1A525737D1900025253 /* MonitorAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D1A425737D1900025253 /* MonitorAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		BC526BF6257257110016E7F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC526BF9257257110016E7F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC526BFB257257110016E7F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC77D18F2572580E00025253 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
+		BC77D1922572596400025253 /* MonitorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorProtocol.swift; sourceTree = "<group>"; };
+		BC77D19525727D1D00025253 /* Monitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
+		BC77D19825727E9A00025253 /* Monitor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monitor+Extension.swift"; sourceTree = "<group>"; };
+		BC77D19B2572859800025253 /* CollectionViewMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMonitor.swift; sourceTree = "<group>"; };
+		BC77D19E2572862F00025253 /* Monitor+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monitor+Util.swift"; sourceTree = "<group>"; };
+		BC77D1A12573581D00025253 /* DelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateProxy.swift; sourceTree = "<group>"; };
+		BC77D1A425737D1900025253 /* MonitorAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,31 @@
 		BC526BEC2572570F0016E7F2 /* TimeMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				BC526C02257257210016E7F2 /* Monitor */,
 				BC526BED2572570F0016E7F2 /* AppDelegate.swift */,
 				BC526BEF2572570F0016E7F2 /* SceneDelegate.swift */,
 				BC526BF12572570F0016E7F2 /* ViewController.swift */,
+				BC77D18F2572580E00025253 /* TestCollectionViewCell.swift */,
 				BC526BF32572570F0016E7F2 /* Main.storyboard */,
 				BC526BF6257257110016E7F2 /* Assets.xcassets */,
 				BC526BF8257257110016E7F2 /* LaunchScreen.storyboard */,
 				BC526BFB257257110016E7F2 /* Info.plist */,
 			);
 			path = TimeMonitor;
+			sourceTree = "<group>";
+		};
+		BC526C02257257210016E7F2 /* Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				BC77D1922572596400025253 /* MonitorProtocol.swift */,
+				BC77D19525727D1D00025253 /* Monitor.swift */,
+				BC77D1A12573581D00025253 /* DelegateProxy.swift */,
+				BC77D19B2572859800025253 /* CollectionViewMonitor.swift */,
+				BC77D19825727E9A00025253 /* Monitor+Extension.swift */,
+				BC77D19E2572862F00025253 /* Monitor+Util.swift */,
+				BC77D1A425737D1900025253 /* MonitorAction.swift */,
+			);
+			path = Monitor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +171,15 @@
 			files = (
 				BC526BF22572570F0016E7F2 /* ViewController.swift in Sources */,
 				BC526BEE2572570F0016E7F2 /* AppDelegate.swift in Sources */,
+				BC77D1902572580E00025253 /* TestCollectionViewCell.swift in Sources */,
 				BC526BF02572570F0016E7F2 /* SceneDelegate.swift in Sources */,
+				BC77D19925727E9A00025253 /* Monitor+Extension.swift in Sources */,
+				BC77D1A22573581D00025253 /* DelegateProxy.swift in Sources */,
+				BC77D19F2572862F00025253 /* Monitor+Util.swift in Sources */,
+				BC77D19C2572859800025253 /* CollectionViewMonitor.swift in Sources */,
+				BC77D19625727D1D00025253 /* Monitor.swift in Sources */,
+				BC77D1A525737D1900025253 /* MonitorAction.swift in Sources */,
+				BC77D1932572596400025253 /* MonitorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
