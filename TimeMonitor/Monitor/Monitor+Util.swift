@@ -45,3 +45,19 @@ extension UITableViewCell {
         return findSuperView(aClass: UITableView.self) as? UITableView
     }
 }
+
+extension Array {
+    func unique(closure: (Element) -> String) -> [Element] {
+        var result: [Element] = []
+        var dic: [String : Bool] = [:]
+        for item in self {
+            let k = closure(item)
+            if let _ = dic[k] {
+                continue
+            }
+            dic[k] = true
+            result.append(item)
+        }
+        return result
+    }
+}

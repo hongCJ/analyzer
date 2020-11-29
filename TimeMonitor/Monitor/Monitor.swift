@@ -8,56 +8,16 @@
 import UIKit
 
 
-protocol Analyzer {
-    func analyze(view: UIView)
-}
-
-struct CollectionAnalyzer: Analyzer {
-    func analyze(view: UIView) {
-        print("analyze collection")
-    }
-}
-
-struct TableAnalyzer: Analyzer {
-    func analyze(view: UIView) {
-        print("analyze table")
-    }
-}
-
-
-
-class BaseMonitor<BaseView: UIView> {
-    weak var baseView: BaseView?
-    
-    var analyzer:  Analyzer
-    init(analyzer:   Analyzer) {
-        self.analyzer  = analyzer
-    }
-    func start() {
-        guard let v = self.baseView else {
-            return
-        }
-        self.analyzer.analyze(view: v)
-    }
-}
-
 struct MonitorObject {
     var monitor: BaseMonitor<UIView>
     var proxy: ScrollViewProxy
 }
 
-
 class Monitor: NSObject {
     static let shared = Monitor()
-    
-    
-    
     fileprivate var runLoopObserver: CFRunLoopObserver!
     fileprivate var moniterViews: [String : MonitorObject]  = [:]
-    
-    
-    
-    
+    fileprivate var moniterActions: [MonitorAction] = []
     override init() {
         super.init()
         addRunLoopObserver()
@@ -72,11 +32,30 @@ class Monitor: NSObject {
 
     private func runLoopObserverCallBack() -> CFRunLoopObserverCallBack {
         return { observer, activity, info in
-//            guard let context = info else {
-//                return
-//            }
-//            let weakSelf = Unmanaged<Monitor>.fromOpaque(context).takeUnretainedValue()
-//            print("done");
+            guard let context = info else {
+                return
+            }
+            let weakSelf = Unmanaged<Monitor>.fromOpaque(context).takeUnretainedValue()
+            weakSelf.fireAction()
+        }
+    }
+    
+    private func fireAction() {
+        guard !moniterActions.isEmpty else {
+            return
+        }
+        
+        let copyActions = moniterActions[0...];
+        moniterActions.removeAll()
+        var cached: [String : Bool] = [:]
+        for action in copyActions {
+            if let _ = cached[action.key] {
+                continue
+            }
+            cached[action.key] = true
+            if let view = self.moniterViews[action.key] {
+                view.monitor.start(type: action.type)
+            }
         }
     }
     
@@ -86,13 +65,19 @@ class Monitor: NSObject {
             return
         }
         let key = tableView.key
+        defer {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                self.moniterActions.append(MonitorAction(key: key, type: .show))
+            }
+        }
+       
         guard !moniterViews.keys.contains(key) else {
             return
         }
         
         let tableViewProxy = TableDelegateProxy(proxy: tableView.delegate)
         tableView.delegate = tableViewProxy
-        let analyzer = CollectionAnalyzer()
+        let analyzer = TableAnalyzer()
         addAnalyzer(analyzer: analyzer, for: tableView, proxy: tableViewProxy)
     }
     
@@ -102,6 +87,12 @@ class Monitor: NSObject {
             return
         }
         let key = collectionView.key
+        defer {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                self.moniterActions.append(MonitorAction(key: key, type: .show))
+            }
+        }
+       
         guard !moniterViews.keys.contains(key) else {
             return
         }
@@ -116,7 +107,21 @@ class Monitor: NSObject {
         let monitor = BaseMonitor(analyzer: analyzer)
         monitor.baseView = view
         let observer = MonitorObject(monitor: monitor, proxy: proxy)
+        proxy.proxyDelegate = self
         moniterViews[view.key] = observer
-  
+    
+    }
+}
+
+
+extension Monitor: ScrollViewProxyDelegate {
+    func scrollViewClickAtIndex(indexPath: IndexPath, viewKey key: String) {
+        let action = MonitorAction(key: key, type: .click(section: indexPath.section, row: indexPath.row))
+        moniterActions.append(action)
+    }
+    
+    func scrollViewShowFor(viewKey key: String) {
+        let action = MonitorAction(key: key, type: .show)
+        moniterActions.append(action)
     }
 }

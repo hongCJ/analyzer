@@ -9,18 +9,31 @@ import UIKit
 
 enum MonotorEventType {
     case show
-    case click
+    case click(section: Int, row: Int)
+}
+
+enum MonitorEventTime {
+    case everyTime
+    case memoryOnce
+    case diskOnce
 }
 
 struct MonitorEvent {
-    var type: MonotorEventType
     var category: String
     var action: String
     var label: String
+    var time: MonitorEventTime
+}
+
+extension MonitorEvent {
+    var key: String {
+        return "m_\(category)_\(action)_\(label)"
+    }
 }
 
 protocol MonitorObservable {
-    var monitorEvents: [MonitorEvent] {get}
-    var isMonitorAble: Bool { get }
+    var clickMonitorEvent: [MonitorEvent]  {get}
+    var showMonitorEvent: [MonitorEvent] {get}
 }
+
 

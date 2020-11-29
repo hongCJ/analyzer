@@ -7,6 +7,8 @@
 
 import UIKit
 
-class MonitorAction: NSObject {
-
+struct MonitorAction {
+    var key: String
+    var type: MonotorEventType
 }
+
