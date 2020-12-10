@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct AnalyzerAction {
-    var key: String
+struct AnalyzerTask {
+    var view: UIView
     var type: AnalyzerEventType
 }
 

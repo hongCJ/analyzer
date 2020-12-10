@@ -9,7 +9,7 @@ import UIKit
 
 enum AnalyzerEventType {
     case show
-    case click(section: Int, row: Int)
+    case click(path: IndexPath)
 }
 
 enum AnalyzerEventTime {

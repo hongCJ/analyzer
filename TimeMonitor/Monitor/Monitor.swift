@@ -7,78 +7,23 @@
 
 import UIKit
 
-
-struct MonitorObject {
-    var analyzer: AnalyzerProtocol
-    var proxy: ViewProxy
-}
-
 class Monitor: NSObject {
+    
     static let shared = Monitor()
-    fileprivate var runLoopObserver: CFRunLoopObserver!
-    fileprivate var moniterViews: [String : MonitorObject]  = [:]
-    fileprivate var moniterActions: [AnalyzerAction] = []
+    
+    fileprivate var viewProxys: [String : ViewProxy]  = [:]
+    fileprivate var taskDispatcher =  TaskDispatcher()
+    
     override init() {
         super.init()
-        addRunLoopObserver()
+        taskDispatcher.start()
     }
-    
-    private func addRunLoopObserver() {
-        let info = Unmanaged<Monitor>.passUnretained(self).toOpaque()
-        var context = CFRunLoopObserverContext(version: 0, info: info, retain: nil, release: nil, copyDescription: nil)
-        runLoopObserver = CFRunLoopObserverCreate(kCFAllocatorDefault, CFRunLoopActivity.beforeWaiting.rawValue, true, 0, runLoopObserverCallBack(), &context)
-        CFRunLoopAddObserver(CFRunLoopGetMain(), runLoopObserver, CFRunLoopMode.defaultMode)
-    }
-
-    private func runLoopObserverCallBack() -> CFRunLoopObserverCallBack {
-        return { observer, activity, info in
-            guard let context = info else {
-                return
-            }
-            let weakSelf = Unmanaged<Monitor>.fromOpaque(context).takeUnretainedValue()
-            weakSelf.fireAction()
-        }
-    }
-    
-    private func fireAction() {
-        guard !moniterActions.isEmpty else {
-            return
-        }
-        
-        let copyActions = moniterActions[0...];
-        moniterActions.removeAll()
-        var cached: [String : Bool] = [:]
-        for action in copyActions {
-            if let _ = cached[action.key] {
-                continue
-            }
-            cached[action.key] = true
-            if let view = self.moniterViews[action.key] {
-                view.analyzer.startAnalyze(type: action.type)
-            }
-        }
-    }
-    
     
     func register(cell: UITableViewCell) {
         guard let tableView = cell.tableView else {
             return
         }
-        let key = tableView.key
-        defer {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                self.moniterActions.append(AnalyzerAction(key: key, type: .show))
-            }
-        }
-       
-        guard !moniterViews.keys.contains(key) else {
-            return
-        }
-        
-        let tableViewProxy = TableDelegateProxy(proxy: tableView.delegate)
-        tableView.delegate = tableViewProxy
-        let analyzer = TableAnalyzer()
-        addAnalyzer(analyzer: analyzer, for: tableView, proxy: tableViewProxy)
+        addView(view: tableView)
     }
     
     
@@ -86,41 +31,33 @@ class Monitor: NSObject {
         guard let collectionView = cell.collectionView else {
             return
         }
-        let key = collectionView.key
-        defer {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                self.moniterActions.append(AnalyzerAction(key: key, type: .show))
-            }
-        }
-       
-        guard !moniterViews.keys.contains(key) else {
-            return
-        }
-        
-        let collectionProxy = CollectionDelegateProxy(proxy: collectionView.delegate)
-        collectionView.delegate = collectionProxy
-        let analyzer = CollectionAnalyzer()
-        addAnalyzer(analyzer: analyzer, for: collectionView, proxy: collectionProxy)
+        addView(view: collectionView)
     }
     
-    private func addAnalyzer(analyzer: ViewAnalyzerProtocol, for view: UIScrollView, proxy: ViewProxy) {
-        let analyzer = AnalyzerFactory.analyzer(for: view)
-        let observer = MonitorObject(analyzer: analyzer, proxy: proxy)
+    private func addView(view: UIView) {
+        let key = view.key
+        defer {
+            taskDispatcher.enque(task: AnalyzerTask(view: view, type: .show), after: 1)
+        }
+        if let _ = viewProxys[key] {
+            return
+        }
+        let proxy = view.viewProxy
         proxy.proxyDelegate = self
-        moniterViews[view.key] = observer
-    
+        viewProxys[key] = proxy
     }
 }
 
 
 extension Monitor: ScrollViewProxyDelegate {
-    func scrollViewClickAtIndex(indexPath: IndexPath, viewKey key: String) {
-        let action = AnalyzerAction(key: key, type: .click(section: indexPath.section, row: indexPath.row))
-        moniterActions.append(action)
+    func scrollViewClickAtIndex(indexPath: IndexPath, _ view: UIView) {
+        let task = AnalyzerTask(view: view, type: .click(path: indexPath))
+        taskDispatcher.enque(task: task)
     }
     
-    func scrollViewShowFor(viewKey key: String) {
-        let action = AnalyzerAction(key: key, type: .show)
-        moniterActions.append(action)
+    func scrollViewShowFor(view: UIView) {
+        let task = AnalyzerTask(view: view, type: .show)
+        taskDispatcher.enque(task: task)
     }
+
 }

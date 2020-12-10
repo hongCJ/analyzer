@@ -8,25 +8,26 @@
 import UIKit
 
 
+
+
 protocol AnalyzerProtocol {
     func startAnalyze(type: AnalyzerEventType)
 }
 
-class AnalyzerFactory {
-    class func analyzer(for view: UIView) -> AnalyzerProtocol {
-        if let collection = view as? UICollectionView {
+extension UIView {
+    var analyzer: AnalyzerProtocol {
+        if let collection = self as? UICollectionView {
             return CollectionAnalyzer(collectionView: collection)
         }
-        if let table = view as? UITableView {
+        if let table = self as? UITableView {
             return TableAnalyzer(tableView: table)
         }
-        if let scrollView = view as? UIScrollView {
+        if let scrollView = self as? UIScrollView {
             return ScrollViewAnalyzer(scrollView: scrollView)
         }
-        return BaseViewAnalyzer(view: view)
+        return BaseViewAnalyzer(view: self)
     }
 }
-
 
 
 
@@ -47,8 +48,8 @@ extension ViewAnalyzerProtocol {
         switch type {
         case .show:
             analyzeShowEvent()
-        case .click(section: let section, row: let row):
-            analyzerClickEvent(section: section, row: row)
+        case .click(path: let path):
+            analyzerClickEvent(section: path.section, row: path.row)
         }
     }
 }

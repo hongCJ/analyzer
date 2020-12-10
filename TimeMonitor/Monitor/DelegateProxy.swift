@@ -8,8 +8,29 @@
 import UIKit
 
 protocol ScrollViewProxyDelegate: NSObjectProtocol {
-    func scrollViewClickAtIndex(indexPath: IndexPath, viewKey key: String)
-    func scrollViewShowFor(viewKey key: String)
+    func scrollViewClickAtIndex(indexPath: IndexPath, _ view: UIView)
+    func scrollViewShowFor(view: UIView)
+}
+
+extension UIView {
+    var viewProxy:  ViewProxy {
+        if let collection = self as? UICollectionView {
+            let result  = CollectionDelegateProxy(proxy: collection.delegate)
+            collection.delegate = result
+            return result
+        }
+        if let table = self as? UITableView {
+            let result = TableDelegateProxy(proxy: table.delegate)
+            table.delegate = result
+            return result
+        }
+        if let scrollView = self as? UIScrollView {
+            let result = ScrollViewProxy(proxy: scrollView.delegate)
+            scrollView.delegate = result
+            return result
+        }
+        return ViewProxy()
+    }
 }
 
 
@@ -31,16 +52,12 @@ class ScrollViewProxy: ViewProxy, UIScrollViewDelegate {
     override func forwardingTarget(for aSelector: Selector!) -> Any? {
         return delegate
     }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-    }
-    
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if decelerate {
-            return
+        proxyDelegate?.scrollViewShowFor(view: scrollView)
+        if delegate?.responds(to: #selector(scrollViewDidEndDragging(_:willDecelerate:)))  ?? false {
+            delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
         }
-        
     }
     
 }
@@ -67,7 +84,7 @@ class CollectionDelegateProxy: ViewProxy, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        proxyDelegate?.scrollViewClickAtIndex(indexPath: indexPath, viewKey: collectionView.key)
+        proxyDelegate?.scrollViewClickAtIndex(indexPath: indexPath, collectionView)
         if delegate?.responds(to: #selector(collectionView(_:didSelectItemAt:))) ?? false {
             delegate?.collectionView?(collectionView, didSelectItemAt: indexPath)
         }
@@ -75,7 +92,7 @@ class CollectionDelegateProxy: ViewProxy, UICollectionViewDelegate {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        proxyDelegate?.scrollViewShowFor(viewKey: scrollView.key)
+        proxyDelegate?.scrollViewShowFor(view: scrollView)
         if delegate?.responds(to: #selector(scrollViewDidEndDragging(_:willDecelerate:)))  ?? false {
             delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
         }
@@ -103,13 +120,13 @@ class TableDelegateProxy: ViewProxy, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        proxyDelegate?.scrollViewClickAtIndex(indexPath: indexPath, viewKey: tableView.key)
+        proxyDelegate?.scrollViewClickAtIndex(indexPath: indexPath, tableView)
         if delegate?.responds(to: #selector(tableView(_:didSelectRowAt:))) ?? false {
             delegate?.tableView?(tableView, didSelectRowAt: indexPath)
         }
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        proxyDelegate?.scrollViewShowFor(viewKey: scrollView.key)
+        proxyDelegate?.scrollViewShowFor(view: scrollView)
         if delegate?.responds(to: #selector(scrollViewDidEndDragging(_:willDecelerate:))) ?? false {
             delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
         }
