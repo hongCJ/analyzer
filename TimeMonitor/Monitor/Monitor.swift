@@ -9,15 +9,15 @@ import UIKit
 
 
 struct MonitorObject {
-    var monitor: BaseMonitor<UIView>
-    var proxy: ScrollViewProxy
+    var analyzer: AnalyzerProtocol
+    var proxy: ViewProxy
 }
 
 class Monitor: NSObject {
     static let shared = Monitor()
     fileprivate var runLoopObserver: CFRunLoopObserver!
     fileprivate var moniterViews: [String : MonitorObject]  = [:]
-    fileprivate var moniterActions: [MonitorAction] = []
+    fileprivate var moniterActions: [AnalyzerAction] = []
     override init() {
         super.init()
         addRunLoopObserver()
@@ -54,7 +54,7 @@ class Monitor: NSObject {
             }
             cached[action.key] = true
             if let view = self.moniterViews[action.key] {
-                view.monitor.start(type: action.type)
+                view.analyzer.startAnalyze(type: action.type)
             }
         }
     }
@@ -67,7 +67,7 @@ class Monitor: NSObject {
         let key = tableView.key
         defer {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                self.moniterActions.append(MonitorAction(key: key, type: .show))
+                self.moniterActions.append(AnalyzerAction(key: key, type: .show))
             }
         }
        
@@ -89,7 +89,7 @@ class Monitor: NSObject {
         let key = collectionView.key
         defer {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                self.moniterActions.append(MonitorAction(key: key, type: .show))
+                self.moniterActions.append(AnalyzerAction(key: key, type: .show))
             }
         }
        
@@ -103,10 +103,9 @@ class Monitor: NSObject {
         addAnalyzer(analyzer: analyzer, for: collectionView, proxy: collectionProxy)
     }
     
-    private func addAnalyzer(analyzer: Analyzer, for view: UIScrollView, proxy: ScrollViewProxy) {
-        let monitor = BaseMonitor(analyzer: analyzer)
-        monitor.baseView = view
-        let observer = MonitorObject(monitor: monitor, proxy: proxy)
+    private func addAnalyzer(analyzer: ViewAnalyzerProtocol, for view: UIScrollView, proxy: ViewProxy) {
+        let analyzer = AnalyzerFactory.analyzer(for: view)
+        let observer = MonitorObject(analyzer: analyzer, proxy: proxy)
         proxy.proxyDelegate = self
         moniterViews[view.key] = observer
     
@@ -116,12 +115,12 @@ class Monitor: NSObject {
 
 extension Monitor: ScrollViewProxyDelegate {
     func scrollViewClickAtIndex(indexPath: IndexPath, viewKey key: String) {
-        let action = MonitorAction(key: key, type: .click(section: indexPath.section, row: indexPath.row))
+        let action = AnalyzerAction(key: key, type: .click(section: indexPath.section, row: indexPath.row))
         moniterActions.append(action)
     }
     
     func scrollViewShowFor(viewKey key: String) {
-        let action = MonitorAction(key: key, type: .show)
+        let action = AnalyzerAction(key: key, type: .show)
         moniterActions.append(action)
     }
 }

@@ -7,33 +7,33 @@
 
 import UIKit
 
-enum MonotorEventType {
+enum AnalyzerEventType {
     case show
     case click(section: Int, row: Int)
 }
 
-enum MonitorEventTime {
+enum AnalyzerEventTime {
     case everyTime
     case memoryOnce
     case diskOnce
 }
 
-struct MonitorEvent {
-    var category: String
-    var action: String
-    var label: String
-    var time: MonitorEventTime
+
+struct AnalyzerEvent {
+    var name: String
+    var parameter: [String : String]
+    var time: AnalyzerEventTime
 }
 
-extension MonitorEvent {
+extension AnalyzerEvent {
     var key: String {
-        return "m_\(category)_\(action)_\(label)"
+        return "k_\(name.hash)_\(parameter.hashValue)"
     }
 }
 
 protocol MonitorObservable {
-    var clickMonitorEvent: [MonitorEvent]  {get}
-    var showMonitorEvent: [MonitorEvent] {get}
+    var clickMonitorEvent: [AnalyzerEvent]  {get}
+    var showMonitorEvent: [AnalyzerEvent] {get}
 }
 
 

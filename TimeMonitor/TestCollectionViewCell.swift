@@ -30,19 +30,23 @@ class TestCollectionViewCell: UICollectionViewCell {
 }
 
 extension TestCollectionViewCell: MonitorObservable {
-    var clickMonitorEvent: [MonitorEvent] {
+    var clickMonitorEvent: [AnalyzerEvent] {
         guard let path = indexPath else {
             return []
         }
-        let e = MonitorEvent(category: "shhh", action: "click", label: "\(path.section)==\(path.row)", time: .diskOnce)
+        let e = AnalyzerEvent(name: "click", parameter: [
+            "key" : "\(path.section)==\(path.row)"
+        ], time: .memoryOnce)
         return [e]
     }
     
-    var showMonitorEvent: [MonitorEvent] {
+    var showMonitorEvent: [AnalyzerEvent] {
         guard let path = indexPath else {
             return []
         }
-        let e = MonitorEvent(category: "shhh", action: "show", label: "\(path.section)==\(path.row)", time: .memoryOnce)
+        let e = AnalyzerEvent(name: "show", parameter: [
+            "key" : "\(path.section)==\(path.row)"
+        ], time: .memoryOnce)
         return [e]
     }
     

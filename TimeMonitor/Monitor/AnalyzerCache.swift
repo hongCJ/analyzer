@@ -8,13 +8,15 @@
 import UIKit
 
 
-class AnalyzerCache: NSObject {
+class AnalyzerCache {
+    static let shared = AnalyzerCache()
+    
+    
     private var memoryCache: [String : Bool] = [:]
     private var diskCache = UserDefaults.standard
     
-     static let shared = AnalyzerCache()
     
-    func checkEventSend(event: MonitorEvent) -> Bool {
+    func checkEventSend(event: AnalyzerEvent) -> Bool {
         switch event.time {
         case .everyTime:
             return false
@@ -25,7 +27,7 @@ class AnalyzerCache: NSObject {
         }
     }
     
-    func setEventSend(event: MonitorEvent, value: Bool) {
+    func setEventSend(event: AnalyzerEvent, value: Bool) {
         switch event.time {
         case .everyTime:
             return

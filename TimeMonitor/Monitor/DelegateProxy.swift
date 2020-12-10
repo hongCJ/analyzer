@@ -12,11 +12,41 @@ protocol ScrollViewProxyDelegate: NSObjectProtocol {
     func scrollViewShowFor(viewKey key: String)
 }
 
-class  ScrollViewProxy: NSObject {
+
+class  ViewProxy: NSObject {
     weak var proxyDelegate: ScrollViewProxyDelegate?
+}
+
+class ScrollViewProxy: ViewProxy, UIScrollViewDelegate {
+    weak var delegate: UIScrollViewDelegate?
+    init(proxy: UIScrollViewDelegate?) {
+        super.init()
+        delegate = proxy
+    }
+    
+    override func responds(to aSelector: Selector!) -> Bool {
+        return delegate?.responds(to: aSelector) ?? false
+    }
+    
+    override func forwardingTarget(for aSelector: Selector!) -> Any? {
+        return delegate
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate {
+            return
+        }
+        
+    }
     
 }
-class CollectionDelegateProxy: ScrollViewProxy, UICollectionViewDelegate {
+
+
+class CollectionDelegateProxy: ViewProxy, UICollectionViewDelegate {
     weak var delegate: UICollectionViewDelegate?
      init(proxy: UICollectionViewDelegate?) {
         super.init()
@@ -52,9 +82,7 @@ class CollectionDelegateProxy: ScrollViewProxy, UICollectionViewDelegate {
     }
 }
 
-
-
-class TableDelegateProxy: ScrollViewProxy, UITableViewDelegate {
+class TableDelegateProxy: ViewProxy, UITableViewDelegate {
     weak var delegate: UITableViewDelegate?
      init(proxy: UITableViewDelegate?) {
         super.init()

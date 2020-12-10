@@ -12,7 +12,7 @@ protocol AnalyzerProtocol {
     func startAnalyze(type: AnalyzerEventType)
 }
 
-class BaseAnalyzer {
+class AnalyzerFactory {
     class func analyzer(for view: UIView) -> AnalyzerProtocol {
         if let collection = view as? UICollectionView {
             return CollectionAnalyzer(collectionView: collection)
@@ -23,19 +23,20 @@ class BaseAnalyzer {
         if let scrollView = view as? UIScrollView {
             return ScrollViewAnalyzer(scrollView: scrollView)
         }
-        
-        return ViewAnalyzer(view: view)
+        return BaseViewAnalyzer(view: view)
     }
 }
 
 
-protocol ViewAnalyzer: AnalyzerProtocol {
-    func analyzerShow()
-    func analyzerClick(section: Int, row: Int)
+
+
+protocol ViewAnalyzerProtocol: AnalyzerProtocol {
+    func analyzeShowEvent()
+    func analyzerClickEvent(section: Int, row: Int)
     func sendEvent(events: [AnalyzerEvent])
 }
 
-extension ViewAnalyzer {
+extension ViewAnalyzerProtocol {
     func sendEvent(events: [AnalyzerEvent]) {
         for event in events {
             AnalyzerUploader.uploadEvent(event: event)
@@ -45,30 +46,30 @@ extension ViewAnalyzer {
     func startAnalyze(type: AnalyzerEventType) {
         switch type {
         case .show:
-            analyzerShow()
+            analyzeShowEvent()
         case .click(section: let section, row: let row):
-            analyzerClick(section: section, row: row)
+            analyzerClickEvent(section: section, row: row)
         }
     }
 }
 
-struct ViewAnalyzer: ViewAnalyzer {
-    func analyzerShow() {
-        
+struct BaseViewAnalyzer: ViewAnalyzerProtocol {
+    func analyzeShowEvent() {
+    
     }
     
-    func analyzerClick(section: Int, row: Int) {
+    func analyzerClickEvent(section: Int, row: Int) {
         
     }
     
     weak var view: UIView?
 }
 
-struct CollectionAnalyzer: ViewAnalyzer {
+struct CollectionAnalyzer: ViewAnalyzerProtocol {
     
     weak var collectionView: UICollectionView?
     
-    func analyzerShow() {
+    func analyzeShowEvent() {
         guard let collection = collectionView else {
             return
         }
@@ -85,7 +86,7 @@ struct CollectionAnalyzer: ViewAnalyzer {
         
     }
     
-    func analyzerClick(section: Int, row: Int) {
+    func analyzerClickEvent(section: Int, row: Int) {
         guard let collection = collectionView else {
             return
         }
@@ -97,25 +98,25 @@ struct CollectionAnalyzer: ViewAnalyzer {
     
 }
 
-struct TableAnalyzer: ViewAnalyzer {
+struct TableAnalyzer: ViewAnalyzerProtocol {
     weak var tableView: UITableView?
-    func analyzerShow() {
+    func analyzeShowEvent() {
         print("tablle show")
     }
     
-    func analyzerClick(section: Int, row: Int) {
+    func analyzerClickEvent(section: Int, row: Int) {
         print("tablle click at \(section) \(row)")
     }
 }
 
 
-struct ScrollViewAnalyzer: ViewAnalyzer {
+struct ScrollViewAnalyzer: ViewAnalyzerProtocol {
     weak var scrollView: UIScrollView?
-    func analyzerShow() {
+    func analyzeShowEvent() {
         print("tablle show")
     }
     
-    func analyzerClick(section: Int, row: Int) {
+    func analyzerClickEvent(section: Int, row: Int) {
         print("tablle click at \(section) \(row)")
     }
 }

@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct MonitorAction {
+struct AnalyzerAction {
     var key: String
-    var type: MonotorEventType
+    var type: AnalyzerEventType
 }
 
