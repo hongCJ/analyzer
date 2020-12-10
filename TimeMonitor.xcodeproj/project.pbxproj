@@ -22,6 +22,7 @@
 		BC77D1A525737D1900025253 /* AnalyzerTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77D1A425737D1900025253 /* AnalyzerTask.swift */; };
 		BCC29CEA2581C7F20099F6C8 /* AnalyzerUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC29CE92581C7F20099F6C8 /* AnalyzerUploader.swift */; };
 		BCC29CFC2581FC710099F6C8 /* TaskDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC29CFB2581FC700099F6C8 /* TaskDispatcher.swift */; };
+		BCC29D00258210E70099F6C8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC29CFF258210E70099F6C8 /* TableViewController.swift */; };
 		BCD61CDC25738EA50043EBCD /* AnalyzerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD61CDB25738EA50043EBCD /* AnalyzerCache.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		BC77D1A425737D1900025253 /* AnalyzerTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzerTask.swift; sourceTree = "<group>"; };
 		BCC29CE92581C7F20099F6C8 /* AnalyzerUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzerUploader.swift; sourceTree = "<group>"; };
 		BCC29CFB2581FC700099F6C8 /* TaskDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDispatcher.swift; sourceTree = "<group>"; };
+		BCC29CFF258210E70099F6C8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		BCD61CDB25738EA50043EBCD /* AnalyzerCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzerCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 				BC526BF6257257110016E7F2 /* Assets.xcassets */,
 				BC526BF8257257110016E7F2 /* LaunchScreen.storyboard */,
 				BC526BFB257257110016E7F2 /* Info.plist */,
+				BCC29CFF258210E70099F6C8 /* TableViewController.swift */,
 			);
 			path = TimeMonitor;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC526BF22572570F0016E7F2 /* ViewController.swift in Sources */,
+				BCC29D00258210E70099F6C8 /* TableViewController.swift in Sources */,
 				BC526BEE2572570F0016E7F2 /* AppDelegate.swift in Sources */,
 				BC77D1902572580E00025253 /* TestCollectionViewCell.swift in Sources */,
 				BC526BF02572570F0016E7F2 /* SceneDelegate.swift in Sources */,

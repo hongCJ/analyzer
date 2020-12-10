@@ -19,19 +19,8 @@ class Monitor: NSObject {
         taskDispatcher.start()
     }
     
-    func register(cell: UITableViewCell) {
-        guard let tableView = cell.tableView else {
-            return
-        }
-        addView(view: tableView)
-    }
-    
-    
-    func register(cell: UICollectionViewCell) {
-        guard let collectionView = cell.collectionView else {
-            return
-        }
-        addView(view: collectionView)
+    func register(view: UIView) {
+        addView(view: view)
     }
     
     private func addView(view: UIView) {

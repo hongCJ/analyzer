@@ -19,20 +19,18 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
         
+        
+        
+        
         collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.white
+        collectionView.startMonitor()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(TestCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         view.addSubview(collectionView)
         
-        
-//        scrollProxy = CollectionDelegateProxy(proxy: collectionView.delegate)
-////        scrollProxy?.target = collectionView.delegate
-////        scrollProxy?.delegate = collectionView.delegate
-//        collectionView.delegate = scrollProxy
-//
-        
+
     }
 
 
@@ -54,8 +52,6 @@ extension ViewController: UICollectionViewDataSource {
         }
         testCell.titleLabel.text = "\(indexPath.section) + \(indexPath.row)"
         testCell.indexPath = indexPath
-        
-        testCell.startMonitor()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -64,11 +60,8 @@ extension ViewController: UICollectionViewDataSource {
 }
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("aa")
-//        DispatchQueue.main.async {
-//            self.collectionView.removeFromSuperview()
-//            self.collectionView = nil
-//        }
+        let v = TableViewController()
+        navigationController?.pushViewController(v, animated: true)
         
     }
 }

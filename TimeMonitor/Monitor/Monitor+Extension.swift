@@ -64,23 +64,22 @@ extension UIView {
     }
 }
 
+extension UIView {
+    func startMonitor() {
+        Monitor.shared.register(view: self)
+    }
+}
 
 
 extension UICollectionViewCell {
     var collectionView: UICollectionView? {
         return findSuperView(aClass: UICollectionView.self) as? UICollectionView
     }
-    func startMonitor() {
-        Monitor.shared.register(cell: self)
-    }
 }
 
 extension UITableViewCell {
     var tableView: UITableView? {
         return findSuperView(aClass: UITableView.self) as? UITableView
-    }
-    func startMonitor() {
-        Monitor.shared.register(cell: self)
     }
 }
 

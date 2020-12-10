@@ -55,13 +55,9 @@ extension ViewAnalyzerProtocol {
 }
 
 struct BaseViewAnalyzer: ViewAnalyzerProtocol {
-    func analyzeShowEvent() {
+    func analyzeShowEvent() {}
     
-    }
-    
-    func analyzerClickEvent(section: Int, row: Int) {
-        
-    }
+    func analyzerClickEvent(section: Int, row: Int) {}
     
     weak var view: UIView?
 }
@@ -102,11 +98,29 @@ struct CollectionAnalyzer: ViewAnalyzerProtocol {
 struct TableAnalyzer: ViewAnalyzerProtocol {
     weak var tableView: UITableView?
     func analyzeShowEvent() {
-        print("tablle show")
+        guard let tableView = tableView else {
+            return
+        }
+        guard tableView.isVisible() else {
+            return
+        }
+        guard let visibleCells = tableView.visibleCells.filter({ $0.isVisible() })  as? [MonitorObservable] else {
+            return
+        }
+        
+        for cell in visibleCells {
+            sendEvent(events: cell.showMonitorEvent)
+        }
     }
     
     func analyzerClickEvent(section: Int, row: Int) {
-        print("tablle click at \(section) \(row)")
+        guard let tableView = tableView else {
+            return
+        }
+        guard let cell = tableView.cellForRow(at: IndexPath(row: row, section: section)) as? MonitorObservable else {
+            return
+        }
+        sendEvent(events: cell.clickMonitorEvent)
     }
 }
 
@@ -114,10 +128,18 @@ struct TableAnalyzer: ViewAnalyzerProtocol {
 struct ScrollViewAnalyzer: ViewAnalyzerProtocol {
     weak var scrollView: UIScrollView?
     func analyzeShowEvent() {
-        print("tablle show")
+        guard let scrollView = scrollView else {
+            return
+        }
+        guard let observable = scrollView.subviews.filter({ $0.isVisible()}) as? [MonitorObservable] else {
+            return
+        }
+        for obser in observable {
+            sendEvent(events: obser.showMonitorEvent)
+        }
     }
     
     func analyzerClickEvent(section: Int, row: Int) {
-        print("tablle click at \(section) \(row)")
+        
     }
 }
