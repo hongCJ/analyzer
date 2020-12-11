@@ -33,7 +33,6 @@ extension UIView {
 protocol ViewAnalyzerProtocol: CheckerProtocol {
     func analyzeShowEvent()
     func analyzerClickEvent(path: IndexPath)
-//    func sendEvent(events: [AnalyzerEvent])
 }
 
 extension ViewAnalyzerProtocol {
@@ -130,8 +129,7 @@ struct ScrollViewAnalyzer: ViewAnalyzerProtocol {
     func analyzerClickEvent(path: IndexPath) {
         
     }
-    
-    
+
     func analyzeShowEvent() {
         guard let scrollView = scrollView else {
             return

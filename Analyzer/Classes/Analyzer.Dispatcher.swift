@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol TaskDispatchAble {
+    associatedtype Value
+    func perform() -> Value
+}
+
 class TaskDispatcher {
     private var runLoopObserver: CFRunLoopObserver?
     private var tasks: [AnalyzerTask] = []
@@ -30,7 +35,7 @@ class TaskDispatcher {
         removeObserver()
     }
     
-    private  func runTask() {
+    private func runTask() {
         guard !tasks.isEmpty else {
             return
         }

@@ -61,9 +61,9 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyCell
         cell.textLabel?.text = "\(indexPath.section)__\(indexPath.row)"
-        cell.readyAnalyze(after: 1.0)
+        cell.readyAnalyze(delay: 1.0)
         return cell
     }
     

@@ -10,19 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
     private var collectionView: UICollectionView!
-    
-//    private var scrollProxy: CollectionDelegateProxy?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
-        
-        
-        
-        
+
         collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.white
         collectionView.dataSource = self
@@ -52,7 +47,7 @@ extension ViewController: UICollectionViewDataSource {
         }
         testCell.titleLabel.text = "\(indexPath.section) + \(indexPath.row)"
         testCell.indexPath = indexPath
-        testCell.readyAnalyze(after: 1.0)
+        testCell.readyAnalyze(delay: 1.0)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -63,7 +58,7 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let v = TableViewController()
         navigationController?.pushViewController(v, animated: true)
-        
+
     }
 }
 

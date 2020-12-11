@@ -21,7 +21,7 @@ class EventHandler<T>: NSObject {
         super.init()
     }
     
-   @objc func handleEvent() {
+    @objc func handleEvent() {
         
     }
 }
@@ -65,11 +65,11 @@ extension UIView {
     }
 }
 
-extension UIView {
-    func readyAnalyze(after: TimeInterval) {
-        Analyzer.shared.startCheck(view: self, after: after)
-    }
-}
+//extension UIView {
+//    func readyAnalyze(after: TimeInterval) {
+//        Analyzer.shared.startCheck(view: self, after: after)
+//    }
+//}
 
 extension UICollectionViewCell {
     var collectionView: UICollectionView? {
@@ -83,20 +83,5 @@ extension UITableViewCell {
     }
 }
 
-extension Array {
-    func unique(closure: (Element) -> String) -> [Element] {
-        var result: [Element] = []
-        var dic: [String : Bool] = [:]
-        for item in self {
-            let k = closure(item)
-            if let _ = dic[k] {
-                continue
-            }
-            dic[k] = true
-            result.append(item)
-        }
-        return result
-    }
-}
 
 

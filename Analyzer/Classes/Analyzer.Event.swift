@@ -20,7 +20,6 @@ struct AnalyzerEvent {
     var name: String
     var parameter: [String : String]
     var time: AnalyzerEventTime
-    
     enum Kind {
         case show
         case click(path: IndexPath)
@@ -29,13 +28,11 @@ struct AnalyzerEvent {
 
 extension AnalyzerEvent {
     var key: String {
-        return "k_\(name.hash)_\(parameter.hashValue)"
+        let strings = parameter.map { (k, v) -> String in
+            return "\(k)_\(v)"
+            }.sorted().joined(separator: "&")
+        let key = "\(name)_\(strings)"
+        return key.md5
     }
 }
-
-protocol AnalyzerAbleProtocol {
-    var analyzerClickEvents: [AnalyzerEvent]  {get}
-    var analyzerShowEvents: [AnalyzerEvent] {get}
-}
-
 

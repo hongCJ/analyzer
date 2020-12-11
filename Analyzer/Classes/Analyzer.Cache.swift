@@ -9,32 +9,38 @@
 import Foundation
 
 class AnalyzerCache {
-    static let shared = AnalyzerCache()
-    
+    enum CacheType {
+        case memory
+        case disk
+    }
     
     private var memoryCache: [String : Bool] = [:]
     private var diskCache = UserDefaults.standard
     
     
-    func checkEventSend(event: AnalyzerEvent) -> Bool {
-        switch event.time {
-        case .everyTime:
-            return false
-        case .memoryOnce:
-            return memoryCache[event.key] ?? false
-        case .diskOnce:
-            return diskCache.bool(forKey: event.key)
+    func set(value: Bool, for key: String, to type: CacheType) {
+        guard !key.isEmpty else {
+            return
+        }
+        switch type {
+        case .disk:
+            diskCache.setValue(value, forKey: key)
+        case .memory:
+            memoryCache[key] = value
         }
     }
     
-    func setEventSend(event: AnalyzerEvent, value: Bool) {
-        switch event.time {
-        case .everyTime:
-            return
-        case .memoryOnce:
-            memoryCache[event.key] = true
-        case .diskOnce:
-            diskCache.setValue(value, forKey: event.key)
+    func get(for key: String, from type: CacheType) -> Bool {
+        guard !key.isEmpty else {
+            return false
+        }
+        switch type {
+        case .disk:
+            return diskCache.bool(forKey: key)
+        case .memory:
+            return memoryCache[key] ?? false
         }
     }
 }
+
+
