@@ -19,7 +19,7 @@
 		ECC672BF2582670500178A4B /* AnalyzerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672BE2582670500178A4B /* AnalyzerUITests.swift */; };
 		ECC672E6258267FE00178A4B /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672E5258267FE00178A4B /* TestCollectionViewCell.swift */; };
 		ECC672E82582683A00178A4B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672E72582683A00178A4B /* TableViewController.swift */; };
-		ECC672EB258268C100178A4B /* Analyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672EA258268C100178A4B /* Analyzer.swift */; };
+		ECC672EB258268C100178A4B /* PBNAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672EA258268C100178A4B /* PBNAnalyzer.swift */; };
 		ECC672ED2582691000178A4B /* Analyzer.Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672EC2582691000178A4B /* Analyzer.Proxy.swift */; };
 		ECC672EF25826AB300178A4B /* Analyzer.Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672EE25826AB300178A4B /* Analyzer.Dispatcher.swift */; };
 		ECC672F125826AE200178A4B /* Analyzer.Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC672F025826AE200178A4B /* Analyzer.Cache.swift */; };
@@ -66,7 +66,7 @@
 		ECC672C02582670500178A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECC672E5258267FE00178A4B /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
 		ECC672E72582683A00178A4B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		ECC672EA258268C100178A4B /* Analyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analyzer.swift; sourceTree = "<group>"; };
+		ECC672EA258268C100178A4B /* PBNAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBNAnalyzer.swift; sourceTree = "<group>"; };
 		ECC672EC2582691000178A4B /* Analyzer.Proxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analyzer.Proxy.swift; sourceTree = "<group>"; };
 		ECC672EE25826AB300178A4B /* Analyzer.Dispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analyzer.Dispatcher.swift; sourceTree = "<group>"; };
 		ECC672F025826AE200178A4B /* Analyzer.Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analyzer.Cache.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		ECC672E9258268A200178A4B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				ECC672EA258268C100178A4B /* Analyzer.swift */,
+				ECC672EA258268C100178A4B /* PBNAnalyzer.swift */,
 				ECC672EE25826AB300178A4B /* Analyzer.Dispatcher.swift */,
 				ECC672FA25826CE800178A4B /* Analyzer.Upload.swift */,
 				ECC672F825826C6D00178A4B /* Analyzer.Checker.swift */,
@@ -307,7 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECC672A12582670200178A4B /* ViewController.swift in Sources */,
-				ECC672EB258268C100178A4B /* Analyzer.swift in Sources */,
+				ECC672EB258268C100178A4B /* PBNAnalyzer.swift in Sources */,
 				ECC6729D2582670200178A4B /* AppDelegate.swift in Sources */,
 				ECC672F525826B2E00178A4B /* Analyzer.Extension.swift in Sources */,
 				ECC672F325826B0A00178A4B /* Analyzer.Task.swift in Sources */,

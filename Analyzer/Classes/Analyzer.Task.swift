@@ -13,3 +13,9 @@ struct AnalyzerTask {
     var kind: AnalyzerEvent.Kind
 }
 
+extension AnalyzerTask {
+    func dispatch() -> [AnalyzerEvent] {
+        return view.checker.startCheck(kind: kind)
+    }
+}
+

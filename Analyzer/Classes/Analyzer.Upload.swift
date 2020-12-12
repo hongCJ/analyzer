@@ -9,6 +9,6 @@
 import Foundation
 
 protocol AnalyzerUploader {
-    static func uploadEvent(event: AnalyzerEvent)
+    func uploadEvent(event: AnalyzerEvent)
 }
 

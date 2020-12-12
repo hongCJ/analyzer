@@ -8,12 +8,20 @@
 
 import UIKit
 
+struct BaseUploader: AnalyzerUploader {
+    func uploadEvent(event: AnalyzerEvent) {
+        print("\(event.name)_\(event.parameter)")
+    }
+}
+
 class ViewController: UIViewController {
 
     private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PBNAnalyzer.shared.addQueue(queue: DispatchQueue(label: "my_queue"))
+        PBNAnalyzer.shared.addUploader(uploader: BaseUploader())
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 100)
@@ -24,11 +32,7 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(TestCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         view.addSubview(collectionView)
-        
-
     }
-
-
 }
 
 extension ViewController: UICollectionViewDataSource {

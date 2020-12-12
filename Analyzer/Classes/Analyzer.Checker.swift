@@ -10,7 +10,7 @@
 import UIKit
 
 protocol CheckerProtocol {
-    func startCheck(kind: AnalyzerEvent.Kind)
+    func startCheck(kind: AnalyzerEvent.Kind) -> [AnalyzerEvent]
 }
 
 extension UIView {
@@ -31,64 +31,61 @@ extension UIView {
 
 
 protocol ViewAnalyzerProtocol: CheckerProtocol {
-    func analyzeShowEvent()
-    func analyzerClickEvent(path: IndexPath)
+    func analyzeShowEvent() -> [AnalyzerEvent]
+    func analyzerClickEvent(path: IndexPath) -> [AnalyzerEvent]
 }
 
 extension ViewAnalyzerProtocol {
-    func sendEvent(events: [AnalyzerEvent]) {
-        for event in events {
-            AnalyzerUploader.uploadEvent(event: event)
-        }
-    }
-    
-    func startCheck(kind: AnalyzerEvent.Kind) {
+    func startCheck(kind: AnalyzerEvent.Kind) -> [AnalyzerEvent] {
         switch kind {
         case .show:
-            analyzeShowEvent()
+            return analyzeShowEvent()
         case .click(path: let path):
-            analyzerClickEvent(path: path)
+            return analyzerClickEvent(path: path)
         }
     }
 }
 
 struct BaseViewAnalyzer: ViewAnalyzerProtocol {
-    func analyzerClickEvent(path: IndexPath) {}
-    func analyzeShowEvent() {}
+    func analyzerClickEvent(path: IndexPath) -> [AnalyzerEvent]{
+        return []
+    }
+    func analyzeShowEvent() -> [AnalyzerEvent] {
+        return []
+    }
     weak var view: UIView?
 }
 
 struct CollectionAnalyzer: ViewAnalyzerProtocol {
     weak var collectionView: UICollectionView?
     
-    func analyzerClickEvent(path: IndexPath) {
+    func analyzerClickEvent(path: IndexPath) -> [AnalyzerEvent] {
        guard let collection = collectionView else {
-            return
+            return []
         }
         guard let cell = collection.cellForItem(at: path) as? AnalyzerAbleProtocol else {
-            return
+            return []
         }
-        sendEvent(events: cell.analyzerClickEvents)
+        return cell.analyzerClickEvents
     }
     
     
     
     
-    func analyzeShowEvent() {
+    func analyzeShowEvent() -> [AnalyzerEvent] {
         guard let collection = collectionView else {
-            return
+            return []
         }
         guard collection.isVisible() else {
-            return
+            return []
         }
         guard let visibleCells = collection.visibleCells.filter({ $0.isVisible() })  as? [AnalyzerAbleProtocol] else {
-            return
+            return []
         }
         
-        for cell in visibleCells {
-            sendEvent(events: cell.analyzerShowEvents)
+        return visibleCells.flatMap {
+            $0.analyzerShowEvents
         }
-        
     }
 
 }
@@ -96,28 +93,28 @@ struct CollectionAnalyzer: ViewAnalyzerProtocol {
 struct TableAnalyzer: ViewAnalyzerProtocol {
     weak var tableView: UITableView?
     
-    func analyzerClickEvent(path: IndexPath) {
+    func analyzerClickEvent(path: IndexPath) -> [AnalyzerEvent] {
         guard let tableView = tableView else {
-            return
+            return []
         }
         guard let cell = tableView.cellForRow(at: path) as? AnalyzerAbleProtocol else {
-            return
+            return []
         }
-        sendEvent(events: cell.analyzerClickEvents)
+        return cell.analyzerClickEvents
     }
-    func analyzeShowEvent() {
+    func analyzeShowEvent() -> [AnalyzerEvent]{
         guard let tableView = tableView else {
-            return
+            return []
         }
         guard tableView.isVisible() else {
-            return
+            return []
         }
         guard let visibleCells = tableView.visibleCells.filter({ $0.isVisible() })  as? [AnalyzerAbleProtocol] else {
-            return
+            return []
         }
         
-        for cell in visibleCells {
-            sendEvent(events: cell.analyzerShowEvents)
+        return visibleCells.flatMap {
+            $0.analyzerShowEvents
         }
     }
 
@@ -126,19 +123,19 @@ struct TableAnalyzer: ViewAnalyzerProtocol {
 
 struct ScrollViewAnalyzer: ViewAnalyzerProtocol {
     weak var scrollView: UIScrollView?
-    func analyzerClickEvent(path: IndexPath) {
-        
+    func analyzerClickEvent(path: IndexPath) -> [AnalyzerEvent]{
+      return []
     }
 
-    func analyzeShowEvent() {
+    func analyzeShowEvent() -> [AnalyzerEvent]{
         guard let scrollView = scrollView else {
-            return
+            return []
         }
         guard let observable = scrollView.subviews.filter({ $0.isVisible()}) as? [AnalyzerAbleProtocol] else {
-            return
+            return []
         }
-        for obser in observable {
-            sendEvent(events: obser.analyzerClickEvents)
+        return observable.flatMap {
+            $0.analyzerShowEvents
         }
     }
 }

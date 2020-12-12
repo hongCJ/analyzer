@@ -9,17 +9,16 @@
 import UIKit
 
 
-enum AnalyzerEventTime {
-    case everyTime
-    case memoryOnce
-    case diskOnce
-}
-
-
 struct AnalyzerEvent {
     var name: String
     var parameter: [String : String]
-    var time: AnalyzerEventTime
+    var time: Time
+    
+    enum Time {
+        case everyTime
+        case memoryOnce
+        case diskOnce
+    }
     enum Kind {
         case show
         case click(path: IndexPath)

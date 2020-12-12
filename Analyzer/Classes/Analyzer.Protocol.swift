@@ -13,22 +13,11 @@ protocol AnalyzerAbleProtocol {
     var analyzerShowEvents: [AnalyzerEvent] {get}
 }
 
-extension AnalyzerAbleProtocol {
-    func setReady() {
-        for event in analyzerShowEvents {
-            BaseCache.shared.setEventReady(event: event)
-        }
-        for event in analyzerClickEvents {
-            BaseCache.shared.setEventReady(event: event)
-        }
-    }
-}
-
 extension AnalyzerAbleProtocol where Self: UITableViewCell {
     func readyAnalyze(delay: TimeInterval = 1.0) {
         if let table = tableView {
-            setReady()
-            Analyzer.shared.analyze(view: table, delay: delay)
+            PBNAnalyzer.shared.setReady(object: self)
+            PBNAnalyzer.shared.analyze(view: table, delay: delay)
             return
         }
         if delay > 0 {
@@ -42,8 +31,8 @@ extension AnalyzerAbleProtocol where Self: UITableViewCell {
 extension AnalyzerAbleProtocol where Self: UICollectionViewCell {
     func readyAnalyze(delay: TimeInterval = 1.0) {
         if let table = collectionView {
-            setReady()
-            Analyzer.shared.analyze(view: table, delay: delay)
+            PBNAnalyzer.shared.setReady(object: self)
+            PBNAnalyzer.shared.analyze(view: table, delay: delay)
             return
         }
         if delay > 0 {
@@ -58,8 +47,8 @@ extension AnalyzerAbleProtocol where Self: UIView {
     func tryAnalyze(delay: TimeInterval = 1.0) {
         guard let view = superview else { return }
         guard let scrollView = view as? UIScrollView else { return }
-        setReady()
-        Analyzer.shared.analyze(view: scrollView, delay: delay)
+        PBNAnalyzer.shared.setReady(object: self)
+        PBNAnalyzer.shared.analyze(view: scrollView, delay: delay)
     }
 }
 

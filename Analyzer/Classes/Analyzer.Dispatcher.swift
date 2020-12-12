@@ -8,69 +8,73 @@
 
 import Foundation
 
-protocol TaskDispatchAble {
-    associatedtype Value
-    func perform() -> Value
+protocol TaskDispatchDelegate: NSObjectProtocol {
+    func dispatchDidFinishTask(tasks: [AnalyzerTask], events: [AnalyzerEvent])
 }
 
-class TaskDispatcher {
-    private var runLoopObserver: CFRunLoopObserver?
-    private var tasks: [AnalyzerTask] = []
-    
-    func enque(task: AnalyzerTask, after time: TimeInterval = 0) {
-        if time == 0 {
-            tasks.append(task)
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
-                self.tasks.append(task)
+extension PBNAnalyzer {
+    class Dispatcher {
+        private var runLoopObserver: CFRunLoopObserver?
+        private var tasks: [AnalyzerTask] = []
+        
+        weak var delegate: TaskDispatchDelegate?
+        
+        func enque(task: AnalyzerTask, after time: TimeInterval = 0) {
+            if time == 0 {
+                tasks.append(task)
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+                    self.tasks.append(task)
+                }
             }
-        }
-    }
-    
-    func start() {
-        addObserver()
-    }
-    
-    func stop() {
-        removeObserver()
-    }
-    
-    private func runTask() {
-        guard !tasks.isEmpty else {
-            return
         }
         
-        let copyTasks = tasks.unique { (task) -> String in
-            task.view.key
+        func start() {
+            addObserver()
         }
-        tasks.removeAll()
-        for task in copyTasks {
-            task.view.checker.startCheck(kind: task.kind)
+        
+        func stop() {
+            removeObserver()
         }
-    }
-
-    private func removeObserver() {
-        guard let observer = runLoopObserver else {
-            return
-        }
-        CFRunLoopRemoveObserver(CFRunLoopGetMain(), observer, CFRunLoopMode.defaultMode)
-    }
-    
-    private func addObserver() {
-        removeObserver()
-        let info = Unmanaged<TaskDispatcher>.passUnretained(self).toOpaque()
-        var context = CFRunLoopObserverContext(version: 0, info: info, retain: nil, release: nil, copyDescription: nil)
-        runLoopObserver = CFRunLoopObserverCreate(kCFAllocatorDefault, CFRunLoopActivity.beforeWaiting.rawValue, true, 0, runLoopObserverCallBack(), &context)
-        CFRunLoopAddObserver(CFRunLoopGetMain(), runLoopObserver, CFRunLoopMode.defaultMode)
-    }
-    
-    private func runLoopObserverCallBack() -> CFRunLoopObserverCallBack {
-        return { observer, activity, info in
-            guard let context = info else {
+        
+        private func runTask() {
+            guard !tasks.isEmpty else {
                 return
             }
-            let weakSelf = Unmanaged<TaskDispatcher>.fromOpaque(context).takeUnretainedValue()
-            weakSelf.runTask()
+            
+            let copyTasks = tasks.unique { (task) -> String in
+                task.view.key
+            }
+            tasks.removeAll()
+            let events = copyTasks.flatMap {
+                $0.dispatch()
+            }
+            delegate?.dispatchDidFinishTask(tasks: copyTasks, events: events)
+        }
+
+        private func removeObserver() {
+            guard let observer = runLoopObserver else {
+                return
+            }
+            CFRunLoopRemoveObserver(CFRunLoopGetMain(), observer, CFRunLoopMode.defaultMode)
+        }
+        
+        private func addObserver() {
+            removeObserver()
+            let info = Unmanaged<Dispatcher>.passUnretained(self).toOpaque()
+            var context = CFRunLoopObserverContext(version: 0, info: info, retain: nil, release: nil, copyDescription: nil)
+            runLoopObserver = CFRunLoopObserverCreate(kCFAllocatorDefault, CFRunLoopActivity.beforeWaiting.rawValue, true, 0, runLoopObserverCallBack(), &context)
+            CFRunLoopAddObserver(CFRunLoopGetMain(), runLoopObserver, CFRunLoopMode.defaultMode)
+        }
+        
+        private func runLoopObserverCallBack() -> CFRunLoopObserverCallBack {
+            return { observer, activity, info in
+                guard let context = info else {
+                    return
+                }
+                let weakSelf = Unmanaged<Dispatcher>.fromOpaque(context).takeUnretainedValue()
+                weakSelf.runTask()
+            }
         }
     }
 }

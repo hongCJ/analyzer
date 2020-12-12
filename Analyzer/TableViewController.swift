@@ -22,14 +22,14 @@ extension MyCell: AnalyzerAbleProtocol {
     var analyzerClickEvents: [AnalyzerEvent] {
         let event = AnalyzerEvent(name: "click", parameter: [
             "click" : "llll"
-        ], time: .everyTime)
+        ], time: .memoryOnce)
         return [event]
     }
     
     var analyzerShowEvents: [AnalyzerEvent] {
-        let event = AnalyzerEvent(name: "click", parameter: [
+        let event = AnalyzerEvent(name: "show_table", parameter: [
             "table" : "llll"
-        ], time: .everyTime)
+        ], time: .diskOnce)
         return [event]
     }
 
