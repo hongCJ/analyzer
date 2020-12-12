@@ -49,6 +49,9 @@ extension UIView {
     }
     
     func isVisible() -> Bool {
+        guard alpha > 0.8 else {
+            return false
+        }
         if isHidden {
             return false
         }
@@ -64,12 +67,6 @@ extension UIView {
         return "key_\(hash)"
     }
 }
-
-//extension UIView {
-//    func readyAnalyze(after: TimeInterval) {
-//        Analyzer.shared.startCheck(view: self, after: after)
-//    }
-//}
 
 extension UICollectionViewCell {
     var collectionView: UICollectionView? {

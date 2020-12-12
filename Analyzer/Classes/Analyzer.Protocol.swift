@@ -11,6 +11,7 @@ import UIKit
 protocol AnalyzerAbleProtocol {
     var analyzerClickEvents: [AnalyzerEvent]  {get}
     var analyzerShowEvents: [AnalyzerEvent] {get}
+    var analyzerReady: Bool { get set}
 }
 
 extension AnalyzerAbleProtocol where Self: UITableViewCell {
@@ -51,4 +52,5 @@ extension AnalyzerAbleProtocol where Self: UIView {
         PBNAnalyzer.shared.analyze(view: scrollView, delay: delay)
     }
 }
+
 

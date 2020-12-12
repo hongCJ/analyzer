@@ -11,6 +11,7 @@ import UIKit
 protocol ProxyDelegate: NSObjectProtocol {
     func proxyViewClickAtIndex(indexPath: IndexPath, _ view: UIView)
     func proxyViewShowFor(view: UIView)
+    func proxyViewClickAtLocation(location: CGPoint, _ view: UIView)
 }
 
 extension UIView {
@@ -28,6 +29,15 @@ extension UIView {
         if let scrollView = self as? UIScrollView {
             let result = ScrollViewProxy(proxy: scrollView.delegate)
             scrollView.delegate = result
+            let gesture = scrollView.gestureRecognizers?.filter({
+                $0 is UITapGestureRecognizer
+                }).first
+            if let ges = gesture {
+                ges.addTarget(result, action: #selector(ScrollViewProxy.handleTapGesture(gesture:)))
+            } else {
+                let tapGesture = UITapGestureRecognizer(target: result, action: #selector(ScrollViewProxy.handleTapGesture(gesture:)))
+                scrollView.addGestureRecognizer(tapGesture)
+            }
             return result
         }
         return ViewProxy()
@@ -47,6 +57,11 @@ class ScrollViewProxy: ViewProxy, UIScrollViewDelegate {
     }
     
     override func responds(to aSelector: Selector!) -> Bool {
+        let selector = #selector(scrollViewDidEndDragging(_:willDecelerate:))
+        let touchSelector = #selector(handleTapGesture(gesture:))
+        if aSelector == selector || aSelector == touchSelector {
+            return true
+        }
         return delegate?.responds(to: aSelector) ?? false
     }
     
@@ -59,6 +74,14 @@ class ScrollViewProxy: ViewProxy, UIScrollViewDelegate {
         if delegate?.responds(to: #selector(scrollViewDidEndDragging(_:willDecelerate:)))  ?? false {
             delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
         }
+    }
+    
+    @objc func handleTapGesture(gesture: UITapGestureRecognizer) {
+        guard let view = gesture.view else {
+            return
+        }
+        let location = gesture.location(in: view)
+        proxyDelegate?.proxyViewClickAtLocation(location: location, view)
     }
     
 }
@@ -89,7 +112,6 @@ class CollectionDelegateProxy: ViewProxy, UICollectionViewDelegate {
         if delegate?.responds(to: #selector(collectionView(_:didSelectItemAt:))) ?? false {
             delegate?.collectionView?(collectionView, didSelectItemAt: indexPath)
         }
-        
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

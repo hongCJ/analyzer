@@ -63,12 +63,16 @@ class PBNAnalyzer: NSObject {
 
 extension PBNAnalyzer: ProxyDelegate {
     func proxyViewClickAtIndex(indexPath: IndexPath, _ view: UIView) {
-        let task = AnalyzerTask(view: view, kind: .click(path: indexPath))
+        let task = AnalyzerTask(view: view, kind: .click(path: .indexPath(path: indexPath)))
         dispatcher.enque(task: task)
     }
     
     func proxyViewShowFor(view: UIView) {
         let task = AnalyzerTask(view: view, kind: .show)
+        dispatcher.enque(task: task)
+    }
+    func proxyViewClickAtLocation(location: CGPoint, _ view: UIView) {
+        let task = AnalyzerTask(view: view, kind: .click(path: .location(location: location)))
         dispatcher.enque(task: task)
     }
     
