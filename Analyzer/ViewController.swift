@@ -31,6 +31,10 @@ class V: UIView {
 }
 
 extension V: AnalyzerAbleProtocol {
+    var analyzerReady: Bool {
+        return true
+    }
+    
     var analyzerClickEvents: [AnalyzerEvent] {
         let e = AnalyzerEvent(name: "scroll_click", parameter: [
             "index" : "\(index)"
@@ -57,37 +61,40 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView = UIScrollView(frame: self.view.bounds)
-        for i in 0...10 {
-            let v = V(frame: CGRect(x: 0, y: 310 * i, width: 300, height: 300))
-            v.index = i
-            v.backgroundColor = .red
-            scrollView.addSubview(v)
-            
-        }
-        view.addSubview(scrollView)
-        
-        scrollView.contentSize = CGSize(width: 300, height: 310 * 10)
-        
+//        scrollView = UIScrollView(frame: self.view.bounds)
+//        for i in 0...10 {
+//            let v = V(frame: CGRect(x: 0, y: 310 * i, width: 300, height: 300))
+//            v.index = i
+//            v.backgroundColor = .red
+//            scrollView.addSubview(v)
+//            
+//        }
+//        view.addSubview(scrollView)
+//        
+//        scrollView.contentSize = CGSize(width: 300, height: 310 * 10)
+//        
         PBNAnalyzer.shared.addQueue(queue: DispatchQueue(label: "my_queue"))
         PBNAnalyzer.shared.addUploader(uploader: BaseUploader())
-
-        let g = UITapGestureRecognizer(target: self, action: #selector(handleTap(ges:)))
-        scrollView.addGestureRecognizer(g)
-        g.addTarget(self, action: #selector(handleTap2(ges:)))
+//
+//        let g = UITapGestureRecognizer(target: self, action: #selector(handleTap(ges:)))
+//        scrollView.addGestureRecognizer(g)
+//        g.addTarget(self, action: #selector(handleTap2(ges:)))
         
 //        let g2 = UITapGestureRecognizer(target: self, action: #selector(handleTap2(ges:)))
 //        scrollView.addGestureRecognizer(g2)
         
-//        let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: 100, height: 100)
-//
-//        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
-//        collectionView.backgroundColor = UIColor.white
-//        collectionView.dataSource = self
-//        collectionView.delegate = self
-//        collectionView.register(TestCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-//        view.addSubview(collectionView)
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 100)
+
+        collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor.white
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(TestCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        view.addSubview(collectionView)
+        
+        collectionView.analyzerDataSource = self
+        
     }
     
     @objc func handleTap(ges: UIGestureRecognizer) {
@@ -114,7 +121,8 @@ extension ViewController: UICollectionViewDataSource {
         }
         testCell.titleLabel.text = "\(indexPath.section) + \(indexPath.row)"
         testCell.indexPath = indexPath
-        testCell.readyAnalyze(delay: 1.0)
+        testCell.tryAnalyze(delay: 1.0)
+//        testCell.readyAnalyze(delay: 1.0)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -123,9 +131,27 @@ extension ViewController: UICollectionViewDataSource {
 }
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let v = TableViewController()
         navigationController?.pushViewController(v, animated: true)
 
     }
 }
 
+extension ViewController: AnalyzerEventsDataSource {
+    func provideShowEvent(for indexPath: IndexPath) -> [AnalyzerEvent] {
+        let event = AnalyzerEvent(name: "home_show", parameter: [
+            "info_click" : "\(indexPath.row)_\(indexPath.section)"
+        ], time: .memoryOnce)
+        return [event]
+    }
+    
+    func provideClickEvent(for indexPath: IndexPath) -> [AnalyzerEvent] {
+        let event = AnalyzerEvent(name: "home_click", parameter: [
+            "info_click" : "\(indexPath.row)_\(indexPath.section)"
+        ], time: .memoryOnce)
+        return [event]
+    }
+    
+    
+}

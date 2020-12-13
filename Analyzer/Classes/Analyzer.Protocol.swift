@@ -9,48 +9,42 @@
 import UIKit
 
 protocol AnalyzerAbleProtocol {
+    var analyzerReady: Bool { get }
     var analyzerClickEvents: [AnalyzerEvent]  {get}
     var analyzerShowEvents: [AnalyzerEvent] {get}
-    var analyzerReady: Bool { get set}
 }
 
-extension AnalyzerAbleProtocol where Self: UITableViewCell {
-    func readyAnalyze(delay: TimeInterval = 1.0) {
-        if let table = tableView {
-            PBNAnalyzer.shared.setReady(object: self)
-            PBNAnalyzer.shared.analyze(view: table, delay: delay)
-            return
-        }
-        if delay > 0 {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
-                self.readyAnalyze(delay: 0)
-            }
-        }
+extension AnalyzerAbleProtocol {
+    var analyzerReady: Bool {
+        return true
+    }
+    var analyzerClickEvents: [AnalyzerEvent]  {
+        return []
+    }
+    var analyzerShowEvents: [AnalyzerEvent] {
+        return []
     }
 }
 
-extension AnalyzerAbleProtocol where Self: UICollectionViewCell {
-    func readyAnalyze(delay: TimeInterval = 1.0) {
-        if let table = collectionView {
-            PBNAnalyzer.shared.setReady(object: self)
-            PBNAnalyzer.shared.analyze(view: table, delay: delay)
-            return
-        }
-        if delay > 0 {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
-                self.readyAnalyze(delay: 0)
-            }
-        }
-    }
-}
-
-extension AnalyzerAbleProtocol where Self: UIView {
+extension UIView {
     func tryAnalyze(delay: TimeInterval = 1.0) {
-        guard let view = superview else { return }
-        guard let scrollView = view as? UIScrollView else { return }
-        PBNAnalyzer.shared.setReady(object: self)
-        PBNAnalyzer.shared.analyze(view: scrollView, delay: delay)
+        guard let view = superview else {
+            if delay > 0 {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
+                    self.tryAnalyze(delay: 0)
+                }
+            }
+            return
+        }
+        if view is UIScrollView {
+            PBNAnalyzer.shared.analyze(view: view, delay: delay)
+        }
+//        if !PBNAnalyzer.shared.strictMode {
+//            return
+//        }
+//        
+//        if let collection = view as?  UICollectionView {
+////            let cell = collection.indexPath(for: <#T##UICollectionViewCell#>)
+//        }
     }
 }
-
-

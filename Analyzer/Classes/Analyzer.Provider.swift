@@ -8,23 +8,36 @@
 
 import UIKit
 
-protocol AnalyzerEventsDataSource {
-    func provideShowEvents(for indexPaths: [IndexPath]) -> [AnalyzerEvent]
-    func provideClickEvents(for indexPaths: [IndexPath]) -> [AnalyzerEvent]
+protocol AnalyzerEventsDataSource: NSObjectProtocol {
+    func provideShowEvent(for indexPath: IndexPath) -> [AnalyzerEvent]
+    func provideClickEvent(for indexPath: IndexPath) -> [AnalyzerEvent]
 }
 
-
-protocol AnalyzerEventsProvider {
-    func provideAnalyzerDataSource() -> AnalyzerEventsDataSource?
+class WeakWrapper: NSObject {
+    weak var source: AnalyzerEventsDataSource?
 }
 
-extension AnalyzerEventsProvider {
-    func provideAnalyzerDataSource() -> AnalyzerEventsDataSource? {
-        return nil
+extension UIScrollView {
+    
+    var analyzerSourceKey: UnsafeRawPointer {
+        return UnsafeRawPointer(bitPattern: "analyzer_data_source".hashValue)!
+    }
+    
+    var analyzerDataSource: AnalyzerEventsDataSource? {
+        get {
+            guard let wrapper = objc_getAssociatedObject(self, analyzerSourceKey) as? WeakWrapper else {
+                return nil
+            }
+            return wrapper.source
+        }
+        set {
+            if let wrapper = objc_getAssociatedObject(self, analyzerSourceKey) as? WeakWrapper {
+                wrapper.source = newValue
+            } else {
+                let wrapper = WeakWrapper()
+                wrapper.source = newValue
+                objc_setAssociatedObject(self, analyzerSourceKey, wrapper, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
     }
 }
-
-
-
-extension NSObject: AnalyzerEventsProvider {}
-

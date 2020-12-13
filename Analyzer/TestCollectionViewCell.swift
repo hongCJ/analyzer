@@ -22,7 +22,6 @@ class TestCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(titleLabel)
         
     }
-    
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -30,19 +29,23 @@ class TestCollectionViewCell: UICollectionViewCell {
 }
 
 extension TestCollectionViewCell: AnalyzerAbleProtocol {
-    var analyzerClickEvents: [AnalyzerEvent] {
-        let e = AnalyzerEvent(name: "click", parameter: [
-            "click" : "eee"
-        ], time: .everyTime)
-        return [e]
+    var analyzerReady: Bool {
+        return true
     }
-    
-    var analyzerShowEvents: [AnalyzerEvent] {
-        let e = AnalyzerEvent(name: "show", parameter: [
-            "show" : "eee"
-        ], time: .everyTime)
-        return [e]
-    }
-    
-    
+
+//    var analyzerClickEvents: [AnalyzerEvent] {
+//        let e = AnalyzerEvent(name: "click", parameter: [
+//            "click" : "eee"
+//        ], time: .everyTime)
+//        return [e]
+//    }
+//
+//    var analyzerShowEvents: [AnalyzerEvent] {
+//        let e = AnalyzerEvent(name: "show", parameter: [
+//            "show" : "eee"
+//        ], time: .everyTime)
+//        return [e]
+//    }
+
+
 }

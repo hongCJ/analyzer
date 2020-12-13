@@ -14,19 +14,24 @@ class PBNAnalyzer: NSObject {
     fileprivate var viewProxys: [String : ViewProxy]  = [:]
     fileprivate var dispatcher = Dispatcher()
     fileprivate var uploadCache = AnalyzerCache()
-    fileprivate var readyCache = AnalyzerCache()
     fileprivate var uploaders: [AnalyzerUploader] = []
     
     fileprivate var uploadQueue: DispatchQueue?
     
-    deinit {
-        dispatcher.stop()
-    }
+    private var timeCache: [String : TimeInterval] = [:]
+    
+    var strictMode = false
     
     override init() {
         super.init()
         dispatcher.delegate = self
-        dispatcher.start()
+    }
+    
+    func addBeginTime(eventKey: String) {
+        if let _ = timeCache[eventKey] {
+            return
+        }
+        timeCache[eventKey] = Date.timeIntervalSinceReferenceDate
     }
     
     func analyze(view: UIView, delay: TimeInterval = 1.0) {
@@ -40,15 +45,6 @@ class PBNAnalyzer: NSObject {
         let proxy = view.viewProxy
         proxy.proxyDelegate = self
         viewProxys[key] = proxy
-    }
-    
-    func setReady(object: AnalyzerAbleProtocol) {
-        object.analyzerClickEvents.forEach { (event) in
-            readyCache.set(value: true, for: event.key, to: .memory)
-        }
-        object.analyzerShowEvents.forEach { (event) in
-            readyCache.set(value: true, for: event.key, to: .memory)
-        }
     }
     
     func addUploader(uploader: AnalyzerUploader) {
@@ -93,10 +89,7 @@ extension PBNAnalyzer: TaskDispatchDelegate {
     }
     
     private func uploadEvents(events: [AnalyzerEvent]) {
-       let readyEvents = events.filter {
-            readyCache.get(for: $0.key, from: .memory)
-        }
-        let unSendEvents = readyEvents.filter { (event) -> Bool in
+        let unSendEvents = events.filter { (event) -> Bool in
             switch event.time {
             case .everyTime:
                 return true
@@ -106,7 +99,14 @@ extension PBNAnalyzer: TaskDispatchDelegate {
                 return !uploadCache.get(for: event.key, from: .memory)
             }
         }
-        unSendEvents.forEach { (event) in
+        let now = Date.timeIntervalSinceReferenceDate
+        let events = !strictMode ? unSendEvents : unSendEvents.filter({ (event) -> Bool in
+            guard let t = timeCache[event.key] else {
+                return false
+            }
+            return (now - t) > 0.8
+        })
+        events.forEach { (event) in
             uploaders.forEach { (loader) in
                 loader.uploadEvent(event: event)
                 switch event.time {

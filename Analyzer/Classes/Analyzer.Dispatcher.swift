@@ -15,11 +15,18 @@ protocol TaskDispatchDelegate: NSObjectProtocol {
 extension PBNAnalyzer {
     class Dispatcher {
         private var runLoopObserver: CFRunLoopObserver?
+        
         private var tasks: [AnalyzerTask] = []
+        private var dateOfLastTask: TimeInterval = 0
+        private var isRunning = false
+        
         
         weak var delegate: TaskDispatchDelegate?
         
         func enque(task: AnalyzerTask, after time: TimeInterval = 0) {
+            if !isRunning {
+                start()
+            }
             if time == 0 {
                 tasks.append(task)
             } else {
@@ -33,12 +40,17 @@ extension PBNAnalyzer {
             addObserver()
         }
         
+         
         func stop() {
             removeObserver()
         }
         
         private func runTask() {
-            guard !tasks.isEmpty else {
+            if tasks.isEmpty {
+                let now = Date.timeIntervalSinceReferenceDate
+                if dateOfLastTask > 0 && now - dateOfLastTask > 10 {
+                    stop()
+                }
                 return
             }
             
@@ -50,9 +62,13 @@ extension PBNAnalyzer {
                 $0.dispatch()
             }
             delegate?.dispatchDidFinishTask(tasks: copyTasks, events: events)
+            dateOfLastTask = Date.timeIntervalSinceReferenceDate
         }
 
         private func removeObserver() {
+            defer {
+                isRunning = false
+            }
             guard let observer = runLoopObserver else {
                 return
             }
@@ -60,6 +76,9 @@ extension PBNAnalyzer {
         }
         
         private func addObserver() {
+            defer {
+                isRunning = true
+            }
             removeObserver()
             let info = Unmanaged<Dispatcher>.passUnretained(self).toOpaque()
             var context = CFRunLoopObserverContext(version: 0, info: info, retain: nil, release: nil, copyDescription: nil)

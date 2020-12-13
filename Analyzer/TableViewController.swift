@@ -19,17 +19,21 @@ class MyCell: UITableViewCell {
 }
 
 extension MyCell: AnalyzerAbleProtocol {
+    var analyzerReady: Bool {
+        return true
+    }
+    
     var analyzerClickEvents: [AnalyzerEvent] {
         let event = AnalyzerEvent(name: "click", parameter: [
             "click" : "llll"
-        ], time: .memoryOnce)
+        ], time: .everyTime)
         return [event]
     }
     
     var analyzerShowEvents: [AnalyzerEvent] {
         let event = AnalyzerEvent(name: "show_table", parameter: [
             "table" : "llll"
-        ], time: .diskOnce)
+        ], time: .everyTime)
         return [event]
     }
 
@@ -63,12 +67,12 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyCell
         cell.textLabel?.text = "\(indexPath.section)__\(indexPath.row)"
-        cell.readyAnalyze(delay: 1.0)
+//        cell.readyAnalyze(delay: 1.0)
+        cell.tryAnalyze(delay: 1.0)
         return cell
     }
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("aaadashk")
     }
 }

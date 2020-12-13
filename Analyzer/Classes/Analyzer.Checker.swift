@@ -67,17 +67,25 @@ struct BaseViewAnalyzer: ViewAnalyzerProtocol {
 
 struct CollectionAnalyzer: ViewAnalyzerProtocol {
     weak var collectionView: UICollectionView?
-    
     func analyzerClickEvent(path: IndexPath) -> [AnalyzerEvent] {
-      guard let collection = collectionView else {
+        guard let collection = collectionView else {
             return []
         }
-        guard let cell = collection.cellForItem(at: path) as? AnalyzerAbleProtocol else {
+        if let source = collection.analyzerDataSource {
+            let events = source.provideClickEvent(for: path)
+            if !events.isEmpty {
+                return events
+            }
+        }
+        guard let cell = collection.cellForItem(at: path) else {
             return []
         }
-        return cell.analyzerClickEvents
+        guard let observable = cell as? AnalyzerAbleProtocol else {
+            return []
+        }
+        return observable.analyzerClickEvents
     }
-
+    
     func analyzeShowEvent() -> [AnalyzerEvent] {
         guard let collection = collectionView else {
             return []
@@ -85,47 +93,88 @@ struct CollectionAnalyzer: ViewAnalyzerProtocol {
         guard collection.isVisible() else {
             return []
         }
-        let visibleCells = collection.visibleCells.filter({ $0.isVisible() })
+        let visibleIndexPath = collection.indexPathsForVisibleItems
+        if visibleIndexPath.isEmpty {
+            return []
+        }
+        let provider = collection.analyzerDataSource
+        var result: [AnalyzerEvent] = []
+        for indexpath in visibleIndexPath {
+            guard let cell = collection.cellForItem(at: indexpath), cell.isVisible() else {
+                continue
+            }
+            guard let obserable = cell as? AnalyzerAbleProtocol, obserable.analyzerReady else {
+                continue
+            }
+            if let source = provider {
+                let events = source.provideShowEvent(for: indexpath)
+                if !events.isEmpty {
+                    result.append(contentsOf: events)
+                    continue
+                }
+            }
+            result.append(contentsOf: obserable.analyzerShowEvents)
+        }
         
-        let observable = visibleCells.compactMap {
-            $0 as? AnalyzerAbleProtocol
-        }
-        return observable.flatMap {
-            $0.analyzerShowEvents
-        }
+        return result
     }
-
+    
 }
 
 struct TableAnalyzer: ViewAnalyzerProtocol {
     weak var tableView: UITableView?
     
     func analyzerClickEvent(path: IndexPath) -> [AnalyzerEvent] {
-        guard let tableView = tableView else {
+       guard let table = tableView else {
             return []
         }
-        guard let cell = tableView.cellForRow(at: path) as? AnalyzerAbleProtocol else {
+        if let source = table.analyzerDataSource {
+            let events = source.provideClickEvent(for: path)
+            if !events.isEmpty {
+                return events
+            }
+        }
+        guard let cell = table.cellForRow(at: path) else {
             return []
         }
-        return cell.analyzerClickEvents
+        guard let observable = cell as? AnalyzerAbleProtocol else {
+            return []
+        }
+        return observable.analyzerClickEvents
     }
     func analyzeShowEvent() -> [AnalyzerEvent]{
-        guard let tableView = tableView else {
+        guard let table = tableView else {
             return []
         }
-        guard tableView.isVisible() else {
+        guard table.isVisible() else {
             return []
         }
-        let visibleCells = tableView.visibleCells.filter({ $0.isVisible() })
+        let visibleIndexPath = table.indexPathsForVisibleRows ?? []
+        if visibleIndexPath.isEmpty {
+            return []
+        }
+        let provider = table.analyzerDataSource
+        var result: [AnalyzerEvent] = []
+        for indexpath in visibleIndexPath {
+            guard let cell = table.cellForRow(at: indexpath), cell.isVisible() else {
+                continue
+            }
+            guard let obserable = cell as? AnalyzerAbleProtocol, obserable.analyzerReady else {
+                continue
+            }
+            if let source = provider {
+                let events = source.provideShowEvent(for: indexpath)
+                if !events.isEmpty {
+                    result.append(contentsOf: events)
+                    continue
+                }
+            }
+            result.append(contentsOf: obserable.analyzerShowEvents)
+        }
         
-        let observable = visibleCells.compactMap {
-            $0 as? AnalyzerAbleProtocol
-        }
-        return observable.flatMap {
-            $0.analyzerShowEvents
-        }
+        return result
     }
-
+    
 }
 
 
