@@ -40,7 +40,7 @@ pod 'MVTimeAnalyzer'
 
 ## Author
 
-zhenghong, zhenghong@dailyinnovation.com
+zhenghong, honglove1109@gmail.com
 
 ## License
 
