@@ -1,0 +1,816 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03AC8D903E8EE809875FE4D7F3038B00 /* MVTimeAnalyzer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F4716A241292ED833E82DBAC23F1AA /* MVTimeAnalyzer-dummy.m */; };
+		4E54745BE3A2EF10B6E5226C009ECE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		530A4E303B641A6EBF53ACC0C79A6A40 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECAA9F4AB35EAEAC7AD5B2384086F60 /* Checker.swift */; };
+		7197CBAF92FC50EC38A82678A7AA7E7C /* Pods-MVTimeAnalyzer_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB763F41693729559F6CE76A6FC57B4 /* Pods-MVTimeAnalyzer_Tests-dummy.m */; };
+		799D0BDCD5A5F63F908F75664C3B16C7 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077A86B1971DD6AB8CE239295DE5F99 /* Protocol.swift */; };
+		7A70BBF5AAE0E48E34F8D24A134FC29E /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7986BC27C0290C9F38C2EACF0D6070EE /* Provider.swift */; };
+		8E70DCC9D19F9B59839E5AE16F9883CC /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D656C3E59AF923CCEC7B826A08D09D8C /* Cache.swift */; };
+		98EEDA0E80419B1871172655D1A81FEA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CB7384BDFD5142D952E133985C1A00 /* Utils.swift */; };
+		9E97377735136EB2A924FD99BD01E295 /* Pods-MVTimeAnalyzer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 735A7032E3D28B5DBEA2F9A8ABCA89BB /* Pods-MVTimeAnalyzer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB32CEC12C91651653C5653FB6FD6F92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		B5040B98781383493D12C60480F37580 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		BEE3BE45C18CA604551E8ACF8613CEFE /* Proxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0390D2B9FC13E3E9D4EBD5E2D3A02CDA /* Proxy.swift */; };
+		C1972DE78CB938718E093F223E93841E /* Pods-MVTimeAnalyzer_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6586CF595BA4CEB09707593B06F96CA8 /* Pods-MVTimeAnalyzer_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3C86A5F4E5D98BFA43D3AECFD94CE27 /* MVTimeAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B150843C3D5D4EB9614BF0531D17404 /* MVTimeAnalyzer.swift */; };
+		C4FEBE5B4E1C86A6EB1FB78E1EB21137 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE293319E80E876CDFFF48F166C24E8E /* Task.swift */; };
+		CA3116F65600D6B5313EBE276F9F677C /* MVTimeAnalyzer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FE3DA2D6E995B2EA9217527AF9E4E0D /* MVTimeAnalyzer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2E24BE4C0E8337F7FFD9CA6CF4C181D /* Pods-MVTimeAnalyzer_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BB0A4842135E51B48705DAE7D6D32 /* Pods-MVTimeAnalyzer_Example-dummy.m */; };
+		D880346BFA380971500014A7DC437CC9 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D77E62C9C23404BE900233D67EA64F9 /* Uploader.swift */; };
+		E35C47FD3082D9369B39B58DCB01CAF6 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3332B54A2240403E835CAF71D4E48378 /* Dispatcher.swift */; };
+		E5526A60A27EF033B1672CE6B8BC4838 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6206F8632E0DD83417D4ADFD6497BA58 /* Event.swift */; };
+		F8909ACDFE69D9C8F16C02A56BA0DD6D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77C505705B2B6B2BF49549F54EA4074 /* Extensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A8C6762EB1792D2A7A820E654691FFEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B51E2A1EDA0EC99ECE0D3B63436BD533;
+			remoteInfo = "Pods-MVTimeAnalyzer_Example";
+		};
+		DFC1C36AED69FA7ACA7B126F966CF2BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A952FD69F6CFB1D199DF2CE898CA64B;
+			remoteInfo = MVTimeAnalyzer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0390D2B9FC13E3E9D4EBD5E2D3A02CDA /* Proxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Proxy.swift; path = MVTimeAnalyzer/Classes/Proxy.swift; sourceTree = "<group>"; };
+		197BB0A4842135E51B48705DAE7D6D32 /* Pods-MVTimeAnalyzer_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MVTimeAnalyzer_Example-dummy.m"; sourceTree = "<group>"; };
+		19B9B0052C998DF87F1FF510861B3927 /* Pods-MVTimeAnalyzer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MVTimeAnalyzer_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		1E5FB74430D906C1B49D685EA7C00B30 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		1FD3BABCC4BED7051E974212B7B11106 /* Pods-MVTimeAnalyzer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MVTimeAnalyzer_Example.release.xcconfig"; sourceTree = "<group>"; };
+		2077A86B1971DD6AB8CE239295DE5F99 /* Protocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Protocol.swift; path = MVTimeAnalyzer/Classes/Protocol.swift; sourceTree = "<group>"; };
+		261AE461B9BFF6CBCA430BB2A9AA43A3 /* Pods-MVTimeAnalyzer_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MVTimeAnalyzer_Example.modulemap"; sourceTree = "<group>"; };
+		2FB763F41693729559F6CE76A6FC57B4 /* Pods-MVTimeAnalyzer_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MVTimeAnalyzer_Tests-dummy.m"; sourceTree = "<group>"; };
+		3332B54A2240403E835CAF71D4E48378 /* Dispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dispatcher.swift; path = MVTimeAnalyzer/Classes/Dispatcher.swift; sourceTree = "<group>"; };
+		33945186FF4E80411535C900CE7F4237 /* Pods-MVTimeAnalyzer_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MVTimeAnalyzer_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		38DF3721BC9B1FD8547749439EF9D91A /* Pods-MVTimeAnalyzer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MVTimeAnalyzer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3C6F0DE1D906EB580EC56D234E705A0F /* Pods-MVTimeAnalyzer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MVTimeAnalyzer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		3FE3DA2D6E995B2EA9217527AF9E4E0D /* MVTimeAnalyzer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MVTimeAnalyzer-umbrella.h"; sourceTree = "<group>"; };
+		6206F8632E0DD83417D4ADFD6497BA58 /* Event.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Event.swift; path = MVTimeAnalyzer/Classes/Event.swift; sourceTree = "<group>"; };
+		6586CF595BA4CEB09707593B06F96CA8 /* Pods-MVTimeAnalyzer_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MVTimeAnalyzer_Tests-umbrella.h"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		735A7032E3D28B5DBEA2F9A8ABCA89BB /* Pods-MVTimeAnalyzer_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MVTimeAnalyzer_Example-umbrella.h"; sourceTree = "<group>"; };
+		73706117E9EDE12DAF7C7C3672993595 /* Pods-MVTimeAnalyzer_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MVTimeAnalyzer_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		74D353169FA1A6026213F1A19B313401 /* Pods-MVTimeAnalyzer_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MVTimeAnalyzer_Tests.modulemap"; sourceTree = "<group>"; };
+		7649172FB663D209F1DEC9D9619EB615 /* Pods-MVTimeAnalyzer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MVTimeAnalyzer_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7701AF1E80F801663CBD689496DEFDE9 /* Pods-MVTimeAnalyzer_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MVTimeAnalyzer_Tests-Info.plist"; sourceTree = "<group>"; };
+		7986BC27C0290C9F38C2EACF0D6070EE /* Provider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = MVTimeAnalyzer/Classes/Provider.swift; sourceTree = "<group>"; };
+		7C648942DD16F4965DC4BB96847FB5E3 /* Pods-MVTimeAnalyzer_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MVTimeAnalyzer_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		83CB7384BDFD5142D952E133985C1A00 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = MVTimeAnalyzer/Classes/Utils.swift; sourceTree = "<group>"; };
+		897F894F7E82D8496A7C5E9E61015BB9 /* MVTimeAnalyzer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MVTimeAnalyzer.modulemap; sourceTree = "<group>"; };
+		8B150843C3D5D4EB9614BF0531D17404 /* MVTimeAnalyzer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MVTimeAnalyzer.swift; path = MVTimeAnalyzer/Classes/MVTimeAnalyzer.swift; sourceTree = "<group>"; };
+		8D77E62C9C23404BE900233D67EA64F9 /* Uploader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Uploader.swift; path = MVTimeAnalyzer/Classes/Uploader.swift; sourceTree = "<group>"; };
+		8D8B122AF7CEBC370A650029C2D08E4E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		93AAB7DE4A56DA1F930D90FC3581F13D /* Pods-MVTimeAnalyzer_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MVTimeAnalyzer_Example-frameworks.sh"; sourceTree = "<group>"; };
+		9828FAA49E136F227A176723C0702887 /* MVTimeAnalyzer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MVTimeAnalyzer.release.xcconfig; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B44ACD71813189F44DF11B00440E81AA /* Pods_MVTimeAnalyzer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MVTimeAnalyzer_Tests.framework; path = "Pods-MVTimeAnalyzer_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6A7697ACE416AB9EBAD52E2BD16799D /* Pods-MVTimeAnalyzer_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MVTimeAnalyzer_Example-Info.plist"; sourceTree = "<group>"; };
+		C3F4716A241292ED833E82DBAC23F1AA /* MVTimeAnalyzer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MVTimeAnalyzer-dummy.m"; sourceTree = "<group>"; };
+		C78622B883801C453147095378DBC960 /* MVTimeAnalyzer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MVTimeAnalyzer-Info.plist"; sourceTree = "<group>"; };
+		C8F5443286E2358619723F2D478C6B97 /* Pods_MVTimeAnalyzer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MVTimeAnalyzer_Example.framework; path = "Pods-MVTimeAnalyzer_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1E7C462F7C09A0D0E6387326D33EA6 /* MVTimeAnalyzer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = MVTimeAnalyzer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D656C3E59AF923CCEC7B826A08D09D8C /* Cache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = MVTimeAnalyzer/Classes/Cache.swift; sourceTree = "<group>"; };
+		DE540988576F10FE5B041770CFC9EE96 /* MVTimeAnalyzer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MVTimeAnalyzer.framework; path = MVTimeAnalyzer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E77C505705B2B6B2BF49549F54EA4074 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = MVTimeAnalyzer/Classes/Extensions.swift; sourceTree = "<group>"; };
+		EE293319E80E876CDFFF48F166C24E8E /* Task.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Task.swift; path = MVTimeAnalyzer/Classes/Task.swift; sourceTree = "<group>"; };
+		EF9C9385368A3C50C2DFC02A0EDF2A19 /* MVTimeAnalyzer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MVTimeAnalyzer.debug.xcconfig; sourceTree = "<group>"; };
+		F0A8A3095D2AD64E6E30E15FCD771DF8 /* MVTimeAnalyzer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MVTimeAnalyzer-prefix.pch"; sourceTree = "<group>"; };
+		FECAA9F4AB35EAEAC7AD5B2384086F60 /* Checker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Checker.swift; path = MVTimeAnalyzer/Classes/Checker.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		35631AF8CEB702F2139EA5C32298F670 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5040B98781383493D12C60480F37580 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		638CB7397F89D77C82D6F33159DA8611 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB32CEC12C91651653C5653FB6FD6F92 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C05FCB1C9724E29EB5107E7309DC104E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E54745BE3A2EF10B6E5226C009ECE19 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3011E9CC245732227DADAE889DCEBE77 /* Pods-MVTimeAnalyzer_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				74D353169FA1A6026213F1A19B313401 /* Pods-MVTimeAnalyzer_Tests.modulemap */,
+				33945186FF4E80411535C900CE7F4237 /* Pods-MVTimeAnalyzer_Tests-acknowledgements.markdown */,
+				7C648942DD16F4965DC4BB96847FB5E3 /* Pods-MVTimeAnalyzer_Tests-acknowledgements.plist */,
+				2FB763F41693729559F6CE76A6FC57B4 /* Pods-MVTimeAnalyzer_Tests-dummy.m */,
+				7701AF1E80F801663CBD689496DEFDE9 /* Pods-MVTimeAnalyzer_Tests-Info.plist */,
+				6586CF595BA4CEB09707593B06F96CA8 /* Pods-MVTimeAnalyzer_Tests-umbrella.h */,
+				38DF3721BC9B1FD8547749439EF9D91A /* Pods-MVTimeAnalyzer_Tests.debug.xcconfig */,
+				7649172FB663D209F1DEC9D9619EB615 /* Pods-MVTimeAnalyzer_Tests.release.xcconfig */,
+			);
+			name = "Pods-MVTimeAnalyzer_Tests";
+			path = "Target Support Files/Pods-MVTimeAnalyzer_Tests";
+			sourceTree = "<group>";
+		};
+		302A16760A6932E33D3C0ABFF66F7D41 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				811C14F5EDA53A53F85F4FB2ADCB00FF /* MVTimeAnalyzer */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		512EA968D9834A4B6EAFA18C2D6761F7 /* Pods-MVTimeAnalyzer_Example */ = {
+			isa = PBXGroup;
+			children = (
+				261AE461B9BFF6CBCA430BB2A9AA43A3 /* Pods-MVTimeAnalyzer_Example.modulemap */,
+				73706117E9EDE12DAF7C7C3672993595 /* Pods-MVTimeAnalyzer_Example-acknowledgements.markdown */,
+				3C6F0DE1D906EB580EC56D234E705A0F /* Pods-MVTimeAnalyzer_Example-acknowledgements.plist */,
+				197BB0A4842135E51B48705DAE7D6D32 /* Pods-MVTimeAnalyzer_Example-dummy.m */,
+				93AAB7DE4A56DA1F930D90FC3581F13D /* Pods-MVTimeAnalyzer_Example-frameworks.sh */,
+				B6A7697ACE416AB9EBAD52E2BD16799D /* Pods-MVTimeAnalyzer_Example-Info.plist */,
+				735A7032E3D28B5DBEA2F9A8ABCA89BB /* Pods-MVTimeAnalyzer_Example-umbrella.h */,
+				19B9B0052C998DF87F1FF510861B3927 /* Pods-MVTimeAnalyzer_Example.debug.xcconfig */,
+				1FD3BABCC4BED7051E974212B7B11106 /* Pods-MVTimeAnalyzer_Example.release.xcconfig */,
+			);
+			name = "Pods-MVTimeAnalyzer_Example";
+			path = "Target Support Files/Pods-MVTimeAnalyzer_Example";
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		811C14F5EDA53A53F85F4FB2ADCB00FF /* MVTimeAnalyzer */ = {
+			isa = PBXGroup;
+			children = (
+				D656C3E59AF923CCEC7B826A08D09D8C /* Cache.swift */,
+				FECAA9F4AB35EAEAC7AD5B2384086F60 /* Checker.swift */,
+				3332B54A2240403E835CAF71D4E48378 /* Dispatcher.swift */,
+				6206F8632E0DD83417D4ADFD6497BA58 /* Event.swift */,
+				E77C505705B2B6B2BF49549F54EA4074 /* Extensions.swift */,
+				8B150843C3D5D4EB9614BF0531D17404 /* MVTimeAnalyzer.swift */,
+				2077A86B1971DD6AB8CE239295DE5F99 /* Protocol.swift */,
+				7986BC27C0290C9F38C2EACF0D6070EE /* Provider.swift */,
+				0390D2B9FC13E3E9D4EBD5E2D3A02CDA /* Proxy.swift */,
+				EE293319E80E876CDFFF48F166C24E8E /* Task.swift */,
+				8D77E62C9C23404BE900233D67EA64F9 /* Uploader.swift */,
+				83CB7384BDFD5142D952E133985C1A00 /* Utils.swift */,
+				CBF76B81C0A703AD4E5C3D3AEBE523DF /* Pod */,
+				B3D5C5AB325716484A1D59FA738D5CF9 /* Support Files */,
+			);
+			name = MVTimeAnalyzer;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		8A2639AF882B541D8DB0E2C3972ED152 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				512EA968D9834A4B6EAFA18C2D6761F7 /* Pods-MVTimeAnalyzer_Example */,
+				3011E9CC245732227DADAE889DCEBE77 /* Pods-MVTimeAnalyzer_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A2C42B833D4E4543E16F1EF448C4599E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE540988576F10FE5B041770CFC9EE96 /* MVTimeAnalyzer.framework */,
+				C8F5443286E2358619723F2D478C6B97 /* Pods_MVTimeAnalyzer_Example.framework */,
+				B44ACD71813189F44DF11B00440E81AA /* Pods_MVTimeAnalyzer_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3D5C5AB325716484A1D59FA738D5CF9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				897F894F7E82D8496A7C5E9E61015BB9 /* MVTimeAnalyzer.modulemap */,
+				C3F4716A241292ED833E82DBAC23F1AA /* MVTimeAnalyzer-dummy.m */,
+				C78622B883801C453147095378DBC960 /* MVTimeAnalyzer-Info.plist */,
+				F0A8A3095D2AD64E6E30E15FCD771DF8 /* MVTimeAnalyzer-prefix.pch */,
+				3FE3DA2D6E995B2EA9217527AF9E4E0D /* MVTimeAnalyzer-umbrella.h */,
+				EF9C9385368A3C50C2DFC02A0EDF2A19 /* MVTimeAnalyzer.debug.xcconfig */,
+				9828FAA49E136F227A176723C0702887 /* MVTimeAnalyzer.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/MVTimeAnalyzer";
+			sourceTree = "<group>";
+		};
+		CBF76B81C0A703AD4E5C3D3AEBE523DF /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				8D8B122AF7CEBC370A650029C2D08E4E /* LICENSE */,
+				CF1E7C462F7C09A0D0E6387326D33EA6 /* MVTimeAnalyzer.podspec */,
+				1E5FB74430D906C1B49D685EA7C00B30 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				302A16760A6932E33D3C0ABFF66F7D41 /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				A2C42B833D4E4543E16F1EF448C4599E /* Products */,
+				8A2639AF882B541D8DB0E2C3972ED152 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A63BABD4729B19CA476483DF188DB7DB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA3116F65600D6B5313EBE276F9F677C /* MVTimeAnalyzer-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB71DF3F7BAD9855DAC3B9FF20A571E4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1972DE78CB938718E093F223E93841E /* Pods-MVTimeAnalyzer_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABA2D0518416913D07F99165E4B1C770 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E97377735136EB2A924FD99BD01E295 /* Pods-MVTimeAnalyzer_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1A952FD69F6CFB1D199DF2CE898CA64B /* MVTimeAnalyzer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E163DBF0ECAF8D9780795FA5B2C6666E /* Build configuration list for PBXNativeTarget "MVTimeAnalyzer" */;
+			buildPhases = (
+				A63BABD4729B19CA476483DF188DB7DB /* Headers */,
+				D09E498E3B5E2F67901863431554D4B3 /* Sources */,
+				35631AF8CEB702F2139EA5C32298F670 /* Frameworks */,
+				89A7E7D678F37F128EC4DE61C8F8F358 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MVTimeAnalyzer;
+			productName = MVTimeAnalyzer;
+			productReference = DE540988576F10FE5B041770CFC9EE96 /* MVTimeAnalyzer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8DC2567BCEB73F0E44D2248511D14120 /* Pods-MVTimeAnalyzer_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2ABC5D5F99B1F09ECFB3827F123D75AC /* Build configuration list for PBXNativeTarget "Pods-MVTimeAnalyzer_Tests" */;
+			buildPhases = (
+				AB71DF3F7BAD9855DAC3B9FF20A571E4 /* Headers */,
+				22C905480ACB1DA80071A9EB6E7700FE /* Sources */,
+				C05FCB1C9724E29EB5107E7309DC104E /* Frameworks */,
+				C880D38E2FEB1BC52BB8BC9B7E5DEBDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF8BDE81DC12D08C0A1E1BCA3F29D015 /* PBXTargetDependency */,
+			);
+			name = "Pods-MVTimeAnalyzer_Tests";
+			productName = "Pods-MVTimeAnalyzer_Tests";
+			productReference = B44ACD71813189F44DF11B00440E81AA /* Pods_MVTimeAnalyzer_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B51E2A1EDA0EC99ECE0D3B63436BD533 /* Pods-MVTimeAnalyzer_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D3FD2F64A115E513EE983ED0BA89F7A /* Build configuration list for PBXNativeTarget "Pods-MVTimeAnalyzer_Example" */;
+			buildPhases = (
+				ABA2D0518416913D07F99165E4B1C770 /* Headers */,
+				E8EE5016AECAEAD30F9F2B29A0B62004 /* Sources */,
+				638CB7397F89D77C82D6F33159DA8611 /* Frameworks */,
+				A3D5D1BEF3DC2842C583269DB49086B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				58DD9734412FA70079AA51254906B57E /* PBXTargetDependency */,
+			);
+			name = "Pods-MVTimeAnalyzer_Example";
+			productName = "Pods-MVTimeAnalyzer_Example";
+			productReference = C8F5443286E2358619723F2D478C6B97 /* Pods_MVTimeAnalyzer_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = A2C42B833D4E4543E16F1EF448C4599E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A952FD69F6CFB1D199DF2CE898CA64B /* MVTimeAnalyzer */,
+				B51E2A1EDA0EC99ECE0D3B63436BD533 /* Pods-MVTimeAnalyzer_Example */,
+				8DC2567BCEB73F0E44D2248511D14120 /* Pods-MVTimeAnalyzer_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		89A7E7D678F37F128EC4DE61C8F8F358 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D5D1BEF3DC2842C583269DB49086B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C880D38E2FEB1BC52BB8BC9B7E5DEBDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		22C905480ACB1DA80071A9EB6E7700FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7197CBAF92FC50EC38A82678A7AA7E7C /* Pods-MVTimeAnalyzer_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D09E498E3B5E2F67901863431554D4B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E70DCC9D19F9B59839E5AE16F9883CC /* Cache.swift in Sources */,
+				530A4E303B641A6EBF53ACC0C79A6A40 /* Checker.swift in Sources */,
+				E35C47FD3082D9369B39B58DCB01CAF6 /* Dispatcher.swift in Sources */,
+				E5526A60A27EF033B1672CE6B8BC4838 /* Event.swift in Sources */,
+				F8909ACDFE69D9C8F16C02A56BA0DD6D /* Extensions.swift in Sources */,
+				03AC8D903E8EE809875FE4D7F3038B00 /* MVTimeAnalyzer-dummy.m in Sources */,
+				C3C86A5F4E5D98BFA43D3AECFD94CE27 /* MVTimeAnalyzer.swift in Sources */,
+				799D0BDCD5A5F63F908F75664C3B16C7 /* Protocol.swift in Sources */,
+				7A70BBF5AAE0E48E34F8D24A134FC29E /* Provider.swift in Sources */,
+				BEE3BE45C18CA604551E8ACF8613CEFE /* Proxy.swift in Sources */,
+				C4FEBE5B4E1C86A6EB1FB78E1EB21137 /* Task.swift in Sources */,
+				D880346BFA380971500014A7DC437CC9 /* Uploader.swift in Sources */,
+				98EEDA0E80419B1871172655D1A81FEA /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8EE5016AECAEAD30F9F2B29A0B62004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2E24BE4C0E8337F7FFD9CA6CF4C181D /* Pods-MVTimeAnalyzer_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		58DD9734412FA70079AA51254906B57E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MVTimeAnalyzer;
+			target = 1A952FD69F6CFB1D199DF2CE898CA64B /* MVTimeAnalyzer */;
+			targetProxy = DFC1C36AED69FA7ACA7B126F966CF2BB /* PBXContainerItemProxy */;
+		};
+		AF8BDE81DC12D08C0A1E1BCA3F29D015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-MVTimeAnalyzer_Example";
+			target = B51E2A1EDA0EC99ECE0D3B63436BD533 /* Pods-MVTimeAnalyzer_Example */;
+			targetProxy = A8C6762EB1792D2A7A820E654691FFEA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		5F7B71224287CD62C392C265B2E8E6E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7649172FB663D209F1DEC9D9619EB615 /* Pods-MVTimeAnalyzer_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Tests/Pods-MVTimeAnalyzer_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Tests/Pods-MVTimeAnalyzer_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		67F2B1B08B8A6E369A0A4A00B8E15DEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FD3BABCC4BED7051E974212B7B11106 /* Pods-MVTimeAnalyzer_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Example/Pods-MVTimeAnalyzer_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Example/Pods-MVTimeAnalyzer_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C63AEBF856E7748EBDF9F27EC7DFB437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19B9B0052C998DF87F1FF510861B3927 /* Pods-MVTimeAnalyzer_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Example/Pods-MVTimeAnalyzer_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Example/Pods-MVTimeAnalyzer_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CA547D2C7E9A8A153DC2B27FBE00B112 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		DCCEEE51E3E8B6CFCDD9F118F3A00ED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38DF3721BC9B1FD8547749439EF9D91A /* Pods-MVTimeAnalyzer_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Tests/Pods-MVTimeAnalyzer_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MVTimeAnalyzer_Tests/Pods-MVTimeAnalyzer_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F7819250D1BD4AFCF506E9E57E0D94F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9828FAA49E136F227A176723C0702887 /* MVTimeAnalyzer.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MVTimeAnalyzer/MVTimeAnalyzer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MVTimeAnalyzer/MVTimeAnalyzer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MVTimeAnalyzer/MVTimeAnalyzer.modulemap";
+				PRODUCT_MODULE_NAME = MVTimeAnalyzer;
+				PRODUCT_NAME = MVTimeAnalyzer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FF3A692DBDF961C3516D0CFCDA5F0254 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF9C9385368A3C50C2DFC02A0EDF2A19 /* MVTimeAnalyzer.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MVTimeAnalyzer/MVTimeAnalyzer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MVTimeAnalyzer/MVTimeAnalyzer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MVTimeAnalyzer/MVTimeAnalyzer.modulemap";
+				PRODUCT_MODULE_NAME = MVTimeAnalyzer;
+				PRODUCT_NAME = MVTimeAnalyzer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2ABC5D5F99B1F09ECFB3827F123D75AC /* Build configuration list for PBXNativeTarget "Pods-MVTimeAnalyzer_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCCEEE51E3E8B6CFCDD9F118F3A00ED0 /* Debug */,
+				5F7B71224287CD62C392C265B2E8E6E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */,
+				CA547D2C7E9A8A153DC2B27FBE00B112 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4D3FD2F64A115E513EE983ED0BA89F7A /* Build configuration list for PBXNativeTarget "Pods-MVTimeAnalyzer_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C63AEBF856E7748EBDF9F27EC7DFB437 /* Debug */,
+				67F2B1B08B8A6E369A0A4A00B8E15DEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E163DBF0ECAF8D9780795FA5B2C6666E /* Build configuration list for PBXNativeTarget "MVTimeAnalyzer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF3A692DBDF961C3516D0CFCDA5F0254 /* Debug */,
+				F7819250D1BD4AFCF506E9E57E0D94F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

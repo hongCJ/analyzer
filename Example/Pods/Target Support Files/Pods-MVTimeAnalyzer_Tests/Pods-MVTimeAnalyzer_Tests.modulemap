@@ -1,0 +1,6 @@
+framework module Pods_MVTimeAnalyzer_Tests {
+  umbrella header "Pods-MVTimeAnalyzer_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

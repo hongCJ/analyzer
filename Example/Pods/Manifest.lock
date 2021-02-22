@@ -1,0 +1,16 @@
+PODS:
+  - MVTimeAnalyzer (1.0.0)
+
+DEPENDENCIES:
+  - MVTimeAnalyzer (from `../`)
+
+EXTERNAL SOURCES:
+  MVTimeAnalyzer:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MVTimeAnalyzer: 9bc7fc19cb36f45f9e40da47d15c9d6bf5a447bc
+
+PODFILE CHECKSUM: 6736327a5eb92020d3b2fc185f6a7fa3f8d70a05
+
+COCOAPODS: 1.10.0

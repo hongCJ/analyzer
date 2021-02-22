@@ -1,0 +1,24 @@
+{
+  "name": "MVTimeAnalyzer",
+  "version": "1.0.0",
+  "summary": "用于统计素材是否处于可见状态，且达到一秒",
+  "description": "此库的目的是用来统计素材的可见时间，即处于可见的范围内的状态，时间则是一秒钟。基于性能的考虑，统计的时间不会很精准，只是作为一个大概的分析参考",
+  "homepage": "https://bitbucket.org/sealcn/mvtimeanalyzer",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zhenghong": "zhenghong@daily.com"
+  },
+  "source": {
+    "git": "git@bitbucket.org:sealcn/mvtimeanalyzer.git",
+    "tag": "1.0.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "MVTimeAnalyzer/Classes/**/*",
+  "swift_versions": "5.0",
+  "swift_version": "5.0"
+}

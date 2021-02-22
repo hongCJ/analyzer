@@ -1,0 +1,6 @@
+framework module MVTimeAnalyzer {
+  umbrella header "MVTimeAnalyzer-umbrella.h"
+
+  export *
+  module * { export * }
+}
