@@ -35,7 +35,7 @@ MVTimeAnalyzer is available through [CocoaPods](https://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'MVTimeAnalyzer'
+pod 'MVTimeAnalyzer' ## 暂不支持
 ```
 
 ## Author
